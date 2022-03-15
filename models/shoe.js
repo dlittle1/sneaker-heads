@@ -15,7 +15,7 @@ const shoeSchema = new Schema({
   likes: {
     type: Number,
   },
-  comments: [{ body: String }],
+  comments: [{ body: String, user_id: String }],
 })
 
 module.exports = mongoose.model('Shoe', shoeSchema)
