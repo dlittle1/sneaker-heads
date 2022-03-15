@@ -6,15 +6,11 @@ const shoeSchema = new Schema({
     type: String,
     required: true,
   },
-  year: {
-    type: Number,
-  },
-  condition: {
-    type: String,
-  },
-  likes: {
-    type: Number,
-  },
+  version: String,
+  year: Number,
+  condition: String,
+  likes: Number,
+  imgUrl: String,
   comments: [{ body: String, user_id: String }],
 })
 

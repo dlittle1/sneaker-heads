@@ -6,11 +6,13 @@ const app = express()
 
 app.use(express.json())
 app.use(morgan('dev'))
+
 mongoose.connect('mongodb://localhost:27017/sneakerheads', () =>
   console.log('connected to database')
 )
 
 app.use('/users', require('./routes/userRouter.js'))
+app.use('/shoes', require('./routes/shoeRouter.js'))
 
 app.use((err, req, res, next) => {
   console.log(err)
