@@ -23,4 +23,10 @@ const userSchema = new Schema({
   likedShoes: {
     type: Array,
   },
+  admin: {
+    type: Boolean,
+    required: true,
+  },
 })
+
+module.exports = mongoose.model('User', userSchema)
