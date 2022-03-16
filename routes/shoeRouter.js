@@ -1,6 +1,7 @@
 const express = require('express')
 const shoeRouter = express.Router()
 const Shoe = require('../models/shoe')
+const User = require('../models/user')
 
 shoeRouter.get('/', (req, res, next) => {
   Shoe.find({}, (err, shoes) => {
@@ -12,14 +13,24 @@ shoeRouter.get('/', (req, res, next) => {
   })
 })
 
-shoeRouter.post('/', (req, res, next) => {
+shoeRouter.post('/:userId', (req, res, next) => {
   const newShoe = new Shoe(req.body)
   newShoe.save((err, savedShoe) => {
     if (err) {
       res.status(500)
       return next(err)
     }
-    return res.status(200).send(savedShoe)
+    User.updateOne(
+      { _id: req.params.userId },
+      { $addToSet: { shoes: savedShoe._id } },
+      (err) => {
+        if (err) {
+          res.status(500)
+          return next(err)
+        }
+        return res.status(200).send(savedShoe)
+      }
+    )
   })
 })
 
