@@ -1,9 +1,10 @@
 import React from 'react'
 import sneakerHeads from '../assets/logo_1_xs.png'
+import '../styles/navbar.css'
 
 const Navbar = () => {
   return (
-    <navbar>
+    <nav>
       <ul className='nav-list'>
         <div className='nav-item nav--logo'>
           <img src={sneakerHeads} alt='sneaker heads logo' />
@@ -20,7 +21,7 @@ const Navbar = () => {
           </li>
         </div>
       </ul>
-    </navbar>
+    </nav>
   )
 }
 

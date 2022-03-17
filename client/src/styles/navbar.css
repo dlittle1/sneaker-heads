@@ -1,0 +1,44 @@
+.nav-list {
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav--logo {
+  max-width: 200px;
+}
+
+.nav--logo img {
+  width: 100%;
+}
+
+.nav--logo-name {
+  font-family: 'Rock Salt', cursive;
+  font-weight: 400;
+}
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  min-width: 250px;
+  font-weight: 500;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-item a:hover {
+  border-bottom: 0.15rem;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: black;
+  border-style: solid;
+}
