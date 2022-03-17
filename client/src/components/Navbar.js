@@ -1,12 +1,12 @@
 import React from 'react'
-import shoeLogo from '../assets/shoe_logo.png'
+import sneakerHeads from '../assets/logo_1_xs.png'
 
 const Navbar = () => {
   return (
     <navbar>
       <ul className='nav-list'>
         <div className='nav-item nav--logo'>
-          <img src={shoeLogo} alt='shoe logo' />
+          <img src={sneakerHeads} alt='sneaker heads logo' />
         </div>
         <div className='nav-items'>
           <li className='nav-item'>
