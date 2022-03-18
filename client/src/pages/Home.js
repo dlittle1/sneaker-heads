@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Masonry from 'react-masonry-css'
+import { Link } from 'react-router-dom'
 import '../styles/home.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/pro-regular-svg-icons'
@@ -22,7 +23,7 @@ const Home = () => {
 
   return (
     <div className='grid'>
-      <a href='#'>
+      <Link to='/shoes/create'>
         <div className='create-shoe-link'>
           <FontAwesomeIcon
             icon={faPlus}
@@ -30,7 +31,7 @@ const Home = () => {
             className='create-shoe-plus'
           />
         </div>
-      </a>
+      </Link>
       <Masonry
         breakpointCols={breakpoints}
         className='my-masonry-grid'
