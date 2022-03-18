@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Masonry from 'react-masonry-css'
 import '../styles/home.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/pro-regular-svg-icons'
 const Home = () => {
   const [shoes, setShoes] = useState([])
 
@@ -10,7 +12,7 @@ const Home = () => {
   }, [])
 
   const breakpoints = {
-    default: 6,
+    default: 5,
     1700: 5,
     1500: 4,
     1200: 3,
@@ -20,6 +22,15 @@ const Home = () => {
 
   return (
     <div className='grid'>
+      <a href='#'>
+        <div className='create-shoe-link'>
+          <FontAwesomeIcon
+            icon={faPlus}
+            size='2x'
+            className='create-shoe-plus'
+          />
+        </div>
+      </a>
       <Masonry
         breakpointCols={breakpoints}
         className='my-masonry-grid'
