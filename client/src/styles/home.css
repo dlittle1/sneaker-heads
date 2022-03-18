@@ -5,13 +5,12 @@
   width: auto;
 }
 .my-masonry-grid_column {
-  padding-left: 30px;
+  padding-left: 0px;
   background-clip: padding-box;
 }
 
 .my-masonry-grid_column > div {
-  width: 300px;
-  background-color: grey;
+  width: 265px;
 }
 
 .grid {
@@ -19,4 +18,39 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.grid-item {
+  position: relative;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid-text-container {
+  position: absolute;
+  height: 99%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  top: 0;
+  border-radius: 0.5rem;
+  visibility: hidden;
+}
+
+.grid-item:hover .grid-text-container {
+  visibility: visible;
+}
+
+.grid-item-text {
+  color: white;
+  text-align: center;
+}
+
+.grid-item-text-title {
+  font-weight: 700;
+  margin-bottom: -5px;
+}
+
+.grid-img {
+  width: 100%;
+  border-radius: 0.5rem;
 }

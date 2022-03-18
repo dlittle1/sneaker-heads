@@ -10,7 +10,7 @@ const Home = () => {
   }, [])
 
   const breakpoints = {
-    default: 4,
+    default: 6,
     1100: 3,
     700: 2,
     400: 1,
@@ -24,9 +24,14 @@ const Home = () => {
         columnClassName='my-masonry-grid_column'
       >
         {shoes.map((shoe, index) => (
-          <div key={index}>
-            <h1>{shoe.name}</h1>
-            <h2>{shoe.version}</h2>
+          <div key={index} className='grid-item'>
+            <img src={shoe.imgUrl} className='grid-img' />
+            <div className='grid-text-container'>
+              <h4 className='grid-item-text grid-item-text-title'>
+                {shoe.name}
+              </h4>
+              <p className='grid-item-text'>{shoe.version}</p>
+            </div>
           </div>
         ))}
       </Masonry>
