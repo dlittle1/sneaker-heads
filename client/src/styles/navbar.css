@@ -15,23 +15,25 @@
 }
 
 .nav--logo-name {
-  font-family: 'Rock Salt', cursive;
-  font-weight: 400;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  color: #2c2c2c;
 }
 .nav-items {
   display: flex;
   justify-content: space-between;
   min-width: 300px;
-  font-weight: 500;
 }
 
 .nav-item {
   list-style: none;
+  color: #2c2c2c;
 }
 
 .nav-item a {
   text-decoration: none;
   color: black;
+  font-weight: 700;
 }
 
 .nav-item a:hover {

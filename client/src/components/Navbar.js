@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav>
       <ul className='nav-list'>
         <div className='nav-item nav--logo'>
-          <img src={sneakerHeads} alt='sneaker heads logo' />
+          <p className='nav--logo-name'>Sneaker-Heads</p>
         </div>
         <div className='nav-items'>
           <li className='nav-item'>
