@@ -40,6 +40,32 @@ const Home = () => {
           <div key={index} className='grid-item'>
             <img src={shoe.imgUrl} className='grid-img' />
             <div className='grid-text-container'>
+              <a href='#'>
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    bottom: '10px',
+                    background: 'white',
+                    borderRadius: '100%',
+                    width: '40px',
+                    height: '40px',
+                  }}
+                  title='Add to Wishlist'
+                >
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    size='2x'
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      color: '#2c2c2c',
+                    }}
+                  />
+                </div>
+              </a>
               <h4 className='grid-item-text grid-item-text-title'>
                 {shoe.name}
               </h4>
