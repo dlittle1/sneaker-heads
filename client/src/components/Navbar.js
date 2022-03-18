@@ -5,17 +5,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons'
 import { faUsersLine } from '@fortawesome/pro-regular-svg-icons'
 import { faUser } from '@fortawesome/pro-regular-svg-icons'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <nav>
       <ul className='nav-list'>
-        <div className='nav-item nav--logo'>
-          <p className='nav--logo-name'>Sneaker-Heads</p>
-        </div>
+        <Link to='/' className='nav--logo'>
+          <div className='nav-item'>
+            <p className='nav--logo-name'>Sneaker-Heads</p>
+          </div>
+        </Link>
         <div className='nav-items'>
           <li className='nav-item'>
-            <FontAwesomeIcon icon={faHouseBlank} className='nav-item-icon' />
-            <a href='#'>Home</a>
+            <Link to='/'>
+              <FontAwesomeIcon icon={faHouseBlank} className='nav-item-icon' />
+              <a href='#'>Home</a>
+            </Link>
           </li>
           <li className='nav-item'>
             <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />

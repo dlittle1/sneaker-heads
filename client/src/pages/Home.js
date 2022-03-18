@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import '../styles/home.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/pro-regular-svg-icons'
+import { faHeart } from '@fortawesome/pro-regular-svg-icons'
 const Home = () => {
   const [shoes, setShoes] = useState([])
 
@@ -22,8 +23,8 @@ const Home = () => {
   }
 
   return (
-    <div className='grid'>
-      <Link to='/shoes/create'>
+    <div>
+      <Link to='/shoes/create' title='Add Your Shoe'>
         <div className='create-shoe-link'>
           <FontAwesomeIcon
             icon={faPlus}
@@ -32,49 +33,51 @@ const Home = () => {
           />
         </div>
       </Link>
-      <Masonry
-        breakpointCols={breakpoints}
-        className='my-masonry-grid'
-        columnClassName='my-masonry-grid_column'
-      >
-        {shoes.map((shoe, index) => (
-          <div key={index} className='grid-item'>
-            <img src={shoe.imgUrl} className='grid-img' />
-            <div className='grid-text-container'>
-              <a href='#'>
-                <div
-                  style={{
-                    position: 'absolute',
-                    right: '10px',
-                    bottom: '10px',
-                    background: 'white',
-                    borderRadius: '100%',
-                    width: '40px',
-                    height: '40px',
-                  }}
-                  title='Add to Wishlist'
-                >
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size='2x'
+      <div className='grid'>
+        <Masonry
+          breakpointCols={breakpoints}
+          className='my-masonry-grid'
+          columnClassName='my-masonry-grid_column'
+        >
+          {shoes.map((shoe, index) => (
+            <div key={index} className='grid-item'>
+              <img src={shoe.imgUrl} className='grid-img' />
+              <div className='grid-text-container'>
+                <a href='#'>
+                  <div
                     style={{
                       position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      color: '#2c2c2c',
+                      right: '10px',
+                      bottom: '10px',
+                      background: 'white',
+                      borderRadius: '100%',
+                      width: '30px',
+                      height: '30px',
                     }}
-                  />
-                </div>
-              </a>
-              <h4 className='grid-item-text grid-item-text-title'>
-                {shoe.name}
-              </h4>
-              <p className='grid-item-text'>{shoe.version}</p>
+                    title='Add to Wishlist'
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      size='1x'
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: '#2c2c2c',
+                      }}
+                    />
+                  </div>
+                </a>
+                <h4 className='grid-item-text grid-item-text-title'>
+                  {shoe.name}
+                </h4>
+                <p className='grid-item-text'>{shoe.version}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </Masonry>
+          ))}
+        </Masonry>
+      </div>
     </div>
   )
 }
