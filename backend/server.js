@@ -11,9 +11,8 @@ const DB = process.env.DATABASE.replace(
 
 mongoose.connect(DB).then(() => console.log('connected to database'));
 
-app.use((err, req, res, next) => {
-  console.log(err);
-  return res.send({ errorMessage: err.message });
+app.use((err, res) => {
+  return res.json({ errorMessage: err.message });
 });
 
 app.listen(9000, () => {
