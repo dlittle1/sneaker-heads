@@ -1,27 +1,23 @@
 {
   "name": "sneaker-heads",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dlittle1/sneaker-heads.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dlittle1/sneaker-heads/issues"
   },
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "mongoose": "^6.2.7",
-    "morgan": "^1.10.0"
-  },
   "homepage": "https://github.com/dlittle1/sneaker-heads#readme",
-  "description": ""
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
 }
