@@ -17,17 +17,7 @@ exports.createShoe = post('/:userId', (req, res, next) => {
       res.status(500);
       return next(err);
     }
-    User.updateOne(
-      { _id: req.params.userId },
-      { $addToSet: { shoes: savedShoe._id } },
-      (err) => {
-        if (err) {
-          res.status(500);
-          return next(err);
-        }
-        return res.status(200).send(savedShoe);
-      }
-    );
+    return res.status(200).send(savedShoe);
   });
 });
 
