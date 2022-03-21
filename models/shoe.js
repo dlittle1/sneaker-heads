@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const shoeSchema = new Schema({
   name: {
@@ -12,6 +12,6 @@ const shoeSchema = new Schema({
   likes: Number,
   imgUrl: String,
   comments: [{ body: String, user_id: String }],
-})
+});
 
-module.exports = mongoose.model('Shoe', shoeSchema)
+module.exports = mongoose.model('Shoe', shoeSchema);

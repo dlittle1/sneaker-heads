@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const CreateShoe = () => {
-  return <div>CreateShoe</div>
-}
+  return <div>CreateShoe</div>;
+};
 
-export default CreateShoe
+export default CreateShoe;

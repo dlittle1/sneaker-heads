@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import Masonry from 'react-masonry-css'
-import { Link } from 'react-router-dom'
-import '../styles/home.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/pro-regular-svg-icons'
-import { faHeart } from '@fortawesome/pro-regular-svg-icons'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Masonry from 'react-masonry-css';
+import { Link } from 'react-router-dom';
+import '../styles/home.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/pro-regular-svg-icons';
+import { faHeart } from '@fortawesome/pro-regular-svg-icons';
 const Home = () => {
-  const [shoes, setShoes] = useState([])
+  const [shoes, setShoes] = useState([]);
 
   useEffect(() => {
-    axios.get('/shoes').then((res) => setShoes(res.data))
-  }, [])
+    axios.get('/shoes').then((res) => setShoes(res.data));
+  }, []);
 
   const breakpoints = {
     default: 5,
@@ -20,7 +20,7 @@ const Home = () => {
     1200: 3,
     890: 2,
     592: 1,
-  }
+  };
 
   return (
     <div>
@@ -79,7 +79,7 @@ const Home = () => {
         </Masonry>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

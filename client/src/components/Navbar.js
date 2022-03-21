@@ -1,11 +1,11 @@
-import React from 'react'
-import sneakerHeads from '../assets/logo_1_xs.png'
-import '../styles/navbar.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons'
-import { faUsersLine } from '@fortawesome/pro-regular-svg-icons'
-import { faUser } from '@fortawesome/pro-regular-svg-icons'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import sneakerHeads from '../assets/logo_1_xs.png';
+import '../styles/navbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons';
+import { faUsersLine } from '@fortawesome/pro-regular-svg-icons';
+import { faUser } from '@fortawesome/pro-regular-svg-icons';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav>
@@ -33,7 +33,7 @@ const Navbar = () => {
         </div>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
