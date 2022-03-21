@@ -1,0 +1,36 @@
+.create-shoe-body {
+  background: rgb(241, 241, 241);
+  height: 95vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.create-shoe-card {
+  background-color: white;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  height: 75%;
+  border-radius: 0.5rem;
+}
+
+.create-shoe-heading {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .create-shoe-card {
+    width: 75%;
+    top: 47%;
+    height: 85%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .create-shoe-card {
+    width: 40%;
+  }
+}

@@ -11,14 +11,11 @@
   text-decoration: none;
 }
 
-.nav--logo img {
-  width: 100%;
-}
-
 .nav--logo-name {
   font-family: 'Righteous', cursive;
   font-size: 25px;
   color: #2c2c2c;
+  margin: 0;
 }
 .nav-items {
   display: flex;
