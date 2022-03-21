@@ -1,6 +1,6 @@
 const Shoe = require('../models/shoe');
 
-exports.getAllShoes = get('/', (req, res, next) => {
+exports.getAllShoes = (req, res, next) => {
   Shoe.find({}, (err, shoes) => {
     if (err) {
       res.status(500);
@@ -8,42 +8,64 @@ exports.getAllShoes = get('/', (req, res, next) => {
     }
     return res.status(200).send(shoes);
   });
-});
+};
 
-exports.createShoe = post('/:userId', (req, res, next) => {
-  const newShoe = new Shoe(req.body);
-  newShoe.save((err, savedShoe) => {
-    if (err) {
-      res.status(500);
-      return next(err);
+exports.getOneShoe = async (req, res, next) => {
+  try {
+    const shoe = await Shoe.findById(req.params.shoeId);
+
+    if (!shoe) {
+      res.status(404).json({
+        status: 'fail',
+        message: 'shoe not found!',
+      });
     }
-    return res.status(200).send(savedShoe);
-  });
-});
+    res.status(200).send({
+      status: 'success',
+      data: {
+        shoe,
+      },
+    });
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+};
 
-exports.updateShoe =
-  ('/:shoeId',
-  (req, res, next) => {
-    Shoe.findByIdAndUpdate(
+exports.createShoe = async (req, res, next) => {
+  try {
+    const newShoe = await Shoe.create(req.body);
+
+    return res.status(200).send(savedShoe);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+};
+
+exports.updateShoe = async (req, res, next) => {
+  try {
+    const updatedShoe = await Shoe.findByIdAndUpdate(
       { _id: req.params.shoeId },
       req.body,
-      { new: true },
-      (err, updatedShoe) => {
-        if (err) {
-          res.status(500);
-          return next(500);
-        }
-        return res.status(200).send(updatedShoe);
-      }
+      { new: true }
     );
-  });
+    return res.status(200).send(updatedShoe);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+};
 
-exports.deleteShoe = (req, res, next) => {
-  Shoe.findByIdAndDelete({ _id: req.params.shoeId }, (err, deletedShoe) => {
-    if (err) {
-      res.status(500);
-      return next(err);
-    }
-    return res.status(200).send(`successfully deleted ${deletedShoe.name}`);
-  });
+exports.deleteShoe = async (req, res, next) => {
+  try {
+    await Shoe.findByIdAndDelete({ _id: req.params.shoeId });
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
 };
