@@ -68,6 +68,40 @@
   margin-bottom: -5px;
 }
 
+.grid-item-button {
+  position: absolute;
+  bottom: 10px;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.grid-item-button-like {
+  right: 10px;
+  background: white;
+}
+
+.grid-item-button-delete {
+  right: 50px;
+  background: rgb(236, 122, 122);
+}
+
+.grid-item-button-edit {
+  right: 90px;
+  background: rgb(92, 159, 235);
+}
+
+.grid-item-button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.grid-item-button:hover {
+  cursor: pointer;
+}
+
 .grid-img {
   width: 100%;
   border-radius: 0.5rem;
