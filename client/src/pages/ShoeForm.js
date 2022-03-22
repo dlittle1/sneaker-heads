@@ -82,7 +82,9 @@ const ShoeForm = () => {
     <div className='shoe-form-body'>
       <div className='shoe-form-card'>
         <div className='shoe-form-container'>
-          <h3 className='shoe-form-heading'>Add Your Sneaker</h3>
+          <h3 className='shoe-form-heading'>
+            {params.id ? 'Edit' : 'Add'} Your Sneaker
+          </h3>
           <form onSubmit={handleSubmit}>
             <div className='shoe-form-field'>
               Name <br />
