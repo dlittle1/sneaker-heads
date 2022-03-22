@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/shoeForm.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateShoe = () => {
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
   const years = Array.from(new Array(101), (val, index) => index - 100 + year);
   const [shoe, setShoe] = useState({
@@ -15,7 +17,7 @@ const CreateShoe = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+
     setShoe((prevShoe) => {
       return {
         ...prevShoe,
@@ -28,7 +30,16 @@ const CreateShoe = () => {
     e.preventDefault();
     axios
       .post('/shoes', shoe)
-      .then((res) => console.log(res))
+      .then((res) =>
+        setShoe({
+          name: '',
+          version: '',
+          condition: 'new',
+          year: 2022,
+          imgUrl: '',
+        })
+      )
+      .then(() => navigate('/'))
       .catch((err) => console.error(err));
   };
 
