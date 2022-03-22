@@ -12,7 +12,7 @@ exports.getAllShoes = (req, res, next) => {
 
 exports.getOneShoe = async (req, res, next) => {
   try {
-    const shoe = await Shoe.findById(req.params.shoeId);
+    const shoe = await Shoe.findById(req.params.id);
 
     if (!shoe) {
       res.status(404).json({
@@ -36,7 +36,7 @@ exports.createShoe = async (req, res, next) => {
   try {
     const newShoe = await Shoe.create(req.body);
 
-    return res.status(200).send(savedShoe);
+    return res.status(200).send(newShoe);
   } catch (err) {
     res.status(500);
     return next(err);
@@ -46,7 +46,7 @@ exports.createShoe = async (req, res, next) => {
 exports.updateShoe = async (req, res, next) => {
   try {
     const updatedShoe = await Shoe.findByIdAndUpdate(
-      { _id: req.params.shoeId },
+      { _id: req.params.id },
       req.body,
       { new: true }
     );
@@ -59,7 +59,7 @@ exports.updateShoe = async (req, res, next) => {
 
 exports.deleteShoe = async (req, res, next) => {
   try {
-    await Shoe.findByIdAndDelete({ _id: req.params.shoeId });
+    await Shoe.findByIdAndDelete({ _id: req.params.id });
     res.status(204).json({
       status: 'success',
       data: null,
