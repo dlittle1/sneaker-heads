@@ -15,6 +15,6 @@ app.use((err, res) => {
   return res.json({ errorMessage: err.message });
 });
 
-app.listen(9000, () => {
-  console.log('app is running on port 9000');
+app.listen(process.env.PORT, () => {
+  console.log(`app is running on port ${process.env.PORT}`);
 });
