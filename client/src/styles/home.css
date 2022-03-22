@@ -58,6 +58,14 @@
   visibility: visible;
 }
 
+.grid-text-container:hover {
+  cursor: pointer;
+}
+
+.grid-item:hover .grid-item-button {
+  visibility: visible;
+}
+
 .grid-item-text {
   color: white;
   text-align: center;
@@ -74,6 +82,7 @@
   border-radius: 100%;
   width: 30px;
   height: 30px;
+  visibility: hidden;
 }
 
 .grid-item-button-like {
