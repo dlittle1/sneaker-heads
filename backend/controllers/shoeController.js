@@ -22,9 +22,7 @@ exports.getOneShoe = async (req, res, next) => {
     }
     res.status(200).send({
       status: 'success',
-      data: {
-        shoe,
-      },
+      shoe: shoe,
     });
   } catch (err) {
     res.status(500);

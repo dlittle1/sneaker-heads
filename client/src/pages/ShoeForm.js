@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/shoeForm.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const CreateShoe = () => {
+const ShoeForm = () => {
   const navigate = useNavigate();
+  const params = useParams();
   const year = new Date().getFullYear();
   const years = Array.from(new Array(101), (val, index) => index - 100 + year);
   const [shoe, setShoe] = useState({
@@ -14,6 +15,15 @@ const CreateShoe = () => {
     year: 2022,
     imgUrl: '',
   });
+
+  useEffect(() => {
+    if (params.id) {
+      axios
+        .get(`/shoes/${params.id}`)
+        .then((res) => setShoe(res.data.shoe))
+        .catch((err) => console.error(err));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +36,7 @@ const CreateShoe = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const createShoe = () => {
     axios
       .post('/shoes', shoe)
       .then((res) =>
@@ -41,6 +50,32 @@ const CreateShoe = () => {
       )
       .then(() => navigate('/'))
       .catch((err) => console.error(err));
+  };
+
+  const editShoe = () => {
+    axios
+      .put(`/shoes/${params.id}`, shoe)
+      .then((res) =>
+        setShoe({
+          name: '',
+          version: '',
+          condition: 'new',
+          year: 2022,
+          imgUrl: '',
+        })
+      )
+      .then(() => navigate('/'))
+      .catch((err) => console.error(err));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (params.id) {
+      editShoe();
+    } else {
+      createShoe();
+    }
   };
 
   return (
@@ -146,4 +181,4 @@ const CreateShoe = () => {
   );
 };
 
-export default CreateShoe;
+export default ShoeForm;

@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CreateShoe from './pages/CreateShoe';
+import ShoeForm from './pages/ShoeForm';
 
 function App() {
   return (
@@ -9,8 +9,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/shoes/create' element={<CreateShoe />} />
-        <Route path='/shoes/:id' element={<CreateShoe />} />
+        <Route path='/shoes/create' element={<ShoeForm />} />
+        <Route path='/shoes/:id' element={<ShoeForm />} />
       </Routes>
     </BrowserRouter>
   );

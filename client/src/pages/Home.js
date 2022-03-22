@@ -8,9 +8,10 @@ import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 import { faHeart } from '@fortawesome/pro-regular-svg-icons';
 import { faTrashCan } from '@fortawesome/pro-regular-svg-icons';
 import { faPenToSquare } from '@fortawesome/pro-regular-svg-icons';
+
 const Home = () => {
   const [shoes, setShoes] = useState([]);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/shoes').then((res) => setShoes(res.data));
@@ -34,9 +35,9 @@ const Home = () => {
       .catch((err) => console.error(err));
   };
 
-  const handleEdit = (id) => {
-    navigate(`/shoes/${id}`);
-  };
+  function handleEdit(id) {
+    navigate(`shoes/${id}`);
+  }
 
   return (
     <div>
