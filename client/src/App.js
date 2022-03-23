@@ -8,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <div style={{ paddingBottom: '70px' }}></div>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shoes/create' element={<ShoeForm />} />
