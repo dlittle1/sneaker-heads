@@ -19,9 +19,7 @@
 
 .shoe-image {
   border-radius: 0.5rem;
-  background-position: center;
-  background-size: cover;
-  width: 70%;
+  max-width: 50%;
 }
 
 .shoe-image img {
@@ -75,15 +73,21 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 1750px) {
+@media screen and (max-width: 900px) {
   .shoe-image {
-    width: 45%;
+    max-width: 75%;
   }
 }
 
 @media screen and (min-width: 1500px) {
   .shoe-image {
-    width: 55%;
+    max-width: 40%;
+  }
+}
+
+@media screen and (min-width: 1850px) {
+  .shoe-image {
+    max-width: 35%;
   }
 }
 
