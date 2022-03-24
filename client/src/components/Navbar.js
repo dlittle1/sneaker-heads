@@ -6,7 +6,7 @@ import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons';
 import { faUsersLine } from '@fortawesome/pro-regular-svg-icons';
 import { faUser } from '@fortawesome/pro-regular-svg-icons';
 import { faBars } from '@fortawesome/pro-regular-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 const Navbar = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
@@ -15,38 +15,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='navbar'>
-      <ul className='nav-list'>
-        <Link to='/' className='nav--logo'>
-          <div className='nav-item'>
-            <p className='nav--logo-name'>Sneaker-Heads</p>
+    <>
+      <nav className='navbar'>
+        <ul className='nav-list'>
+          <Link to='/shoes' className='nav--logo'>
+            <div className='nav-item'>
+              <p className='nav--logo-name'>Sneaker-Heads</p>
+            </div>
+          </Link>
+          <div className='nav-menu' onClick={handleDrawer}>
+            <FontAwesomeIcon icon={faBars} className='nav-item-icon' />
           </div>
-        </Link>
-        <div className='nav-menu' onClick={handleDrawer}>
-          <FontAwesomeIcon icon={faBars} className='nav-item-icon' />
-        </div>
-        <div className='nav-items'>
-          <li className='nav-item'>
-            <Link to='/'>
-              <FontAwesomeIcon icon={faHouseBlank} className='nav-item-icon' />
-              Home
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
-            <a href='#'>Users</a>
-          </li>
-          <li className='nav-item'>
-            <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-            <a href='#'>Profile</a>
-          </li>
-        </div>
-      </ul>
-      {drawerIsOpen && (
-        <div className='nav-drawer'>
-          <ul className='nav-drawer-items'>
-            <li className='nav-drawer-item'>
-              <Link to='/'>
+          <div className='nav-items'>
+            <li className='nav-item'>
+              <Link to='/shoes'>
                 <FontAwesomeIcon
                   icon={faHouseBlank}
                   className='nav-item-icon'
@@ -54,18 +36,43 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className='nav-drawer-item'>
+            <li className='nav-item'>
               <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
               <a href='#'>Users</a>
             </li>
-            <li className='nav-drawer-item'>
+            <li className='nav-item'>
               <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
               <a href='#'>Profile</a>
             </li>
-          </ul>
-        </div>
-      )}
-    </nav>
+          </div>
+        </ul>
+        {drawerIsOpen && (
+          <div className='nav-drawer'>
+            <ul className='nav-drawer-items'>
+              <li className='nav-drawer-item'>
+                <Link to='/'>
+                  <FontAwesomeIcon
+                    icon={faHouseBlank}
+                    className='nav-item-icon'
+                  />
+                  Home
+                </Link>
+              </li>
+              <li className='nav-drawer-item'>
+                <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
+                <a href='#'>Users</a>
+              </li>
+              <li className='nav-drawer-item'>
+                <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
+                <a href='#'>Profile</a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </nav>
+      <div style={{ paddingBottom: '50px' }}></div>
+      <Outlet />
+    </>
   );
 };
 

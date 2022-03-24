@@ -1,0 +1,52 @@
+.landing-page-body {
+  height: 100vh;
+  display: flex;
+}
+
+.landing-page-image {
+  height: 100%;
+  width: 50%;
+  background: url(../assets/1370234.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+
+.landing-page-heading {
+  padding-top: 150px;
+  text-align: center;
+  width: 50%;
+  position: relative;
+}
+
+.landing-page-heading-welcome {
+  margin: 0;
+  font-size: 35px;
+  color: #2c2c2c;
+}
+
+.landing-page-heading-title {
+  font-family: 'Righteous', cursive;
+  font-size: 55px;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+.landing-page-heading-subtitle {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.landing-page-heading-enter {
+  color: rgb(255, 255, 255);
+  margin-top: 75px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.landing-page-heading-enter:hover {
+  cursor: pointer;
+}

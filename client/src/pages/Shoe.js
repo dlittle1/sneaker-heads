@@ -35,7 +35,7 @@ const Shoe = () => {
   const handleDelete = (id) => {
     axios
       .delete(`/shoes/${id}`)
-      .then((res) => navigate('/'))
+      .then((res) => navigate('/shoes'))
       .catch((err) => console.error(err));
   };
 

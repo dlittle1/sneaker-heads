@@ -48,7 +48,7 @@ const ShoeForm = () => {
           imgUrl: '',
         })
       )
-      .then(() => navigate('/'))
+      .then(() => navigate('/shoes'))
       .catch((err) => console.error(err));
   };
 
@@ -64,7 +64,7 @@ const ShoeForm = () => {
           imgUrl: '',
         })
       )
-      .then(() => navigate('/'))
+      .then(() => navigate('/shoes'))
       .catch((err) => console.error(err));
   };
 
