@@ -43,10 +43,27 @@
   left: 50%;
   transform: translate(-50%);
   background-color: #2c2c2c;
-  padding: 20px;
+  padding: 0.5rem;
   border-radius: 0.5rem;
 }
 
 .landing-page-heading-enter:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .landing-page-body {
+    flex-direction: column-reverse;
+  }
+  .landing-page-image {
+    width: 100%;
+  }
+  .landing-page-heading {
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 170px;
+  }
+  .landing-page-heading-enter {
+    margin-top: 40px;
+  }
 }
