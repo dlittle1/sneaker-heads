@@ -8,7 +8,7 @@
     "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\"",
     "build": "concurrently \"cd client && yarn build\" \"cd backend && yarn build\"",
     "start": "cd backend && node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/dlittle1/sneaker-heads#readme",
   "dependencies": {
     "concurrently": "^7.0.0"
+  },
+  "engines": {
+    "node": "16.13.1"
   }
 }
