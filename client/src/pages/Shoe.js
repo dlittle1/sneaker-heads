@@ -18,7 +18,7 @@ const Shoe = () => {
   useEffect(() => {
     const sendGetRequest = async () => {
       try {
-        const res = await axios.get(`/shoes/${shoeId}`);
+        const res = await axios.get(`/api/shoes/${shoeId}`);
         setShoe(res.data.shoe);
         setLoading(false);
       } catch (err) {

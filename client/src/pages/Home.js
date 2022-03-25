@@ -28,7 +28,7 @@ const Home = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`/shoes/${id}`)
+      .delete(`/api/shoes/${id}`)
       .then((res) =>
         setShoes((prevShoes) => prevShoes.filter((shoe) => shoe._id !== id))
       )

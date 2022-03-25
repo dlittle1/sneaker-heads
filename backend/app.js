@@ -13,6 +13,6 @@ if (process.env.NODE_EVN === 'development') {
 app.use(express.json());
 
 // ROUTES
-app.use('/shoes', shoeRouter);
+app.use('/api/shoes', shoeRouter);
 
 module.exports = app;

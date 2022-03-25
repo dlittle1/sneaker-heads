@@ -19,7 +19,7 @@ const ShoeForm = () => {
   useEffect(() => {
     if (params.id) {
       axios
-        .get(`/shoes/${params.id}`)
+        .get(`/api/shoes/${params.id}`)
         .then((res) => setShoe(res.data.shoe))
         .catch((err) => console.error(err));
     }
@@ -38,7 +38,7 @@ const ShoeForm = () => {
 
   const createShoe = () => {
     axios
-      .post('/shoes', shoe)
+      .post('/api/shoes', shoe)
       .then((res) =>
         setShoe({
           name: '',
@@ -54,7 +54,7 @@ const ShoeForm = () => {
 
   const editShoe = () => {
     axios
-      .put(`/shoes/${params.id}`, shoe)
+      .put(`/api/shoes/${params.id}`, shoe)
       .then((res) =>
         setShoe({
           name: '',
