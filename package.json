@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\"",
-    "build": "concurrently \"cd client && yarn build\" \"cd backend && yarn build\"",
     "start": "cd backend && node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
