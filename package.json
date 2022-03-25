@@ -22,8 +22,5 @@
   "homepage": "https://github.com/dlittle1/sneaker-heads#readme",
   "dependencies": {
     "concurrently": "^7.0.0"
-  },
-  "engines": {
-    "node": "16.13.1"
   }
 }
