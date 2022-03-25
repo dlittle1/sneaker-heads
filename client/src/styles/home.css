@@ -86,6 +86,7 @@
   height: 30px;
   visibility: hidden;
   position: relative;
+  z-index: 20;
 }
 
 .grid-item-button-like {
