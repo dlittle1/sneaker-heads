@@ -15,6 +15,14 @@ app.use((err, res) => {
   return res.json({ errorMessage: err.message });
 });
 
-app.listen(process.env.PORT, () => {
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, '../client', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
+});
+
+app.listen(process.env.PORT || 9000, () => {
   console.log(`app is running on port ${process.env.PORT}`);
 });
