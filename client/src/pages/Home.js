@@ -11,10 +11,15 @@ import { faPenToSquare } from '@fortawesome/pro-regular-svg-icons';
 
 const Home = () => {
   const [shoes, setShoes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('/shoes').then((res) => setShoes(res.data));
+    axios
+      .get('/api/shoes')
+      .then((res) => setShoes(res.data))
+      .then(() => setLoading(false))
+      .catch((err) => console.error(err));
   }, []);
 
   const breakpoints = {
