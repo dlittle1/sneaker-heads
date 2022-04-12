@@ -15,7 +15,7 @@ authRouter.post('/signup', async (req, res, next) => {
   const avatar = { ...getRandomOptions() };
 
   try {
-    let foundUser = await User.findOne({ username });
+    const foundUser = await User.findOne({ username });
     if (foundUser) {
       return res.status(400).json({ message: 'Username already exists' });
     }
@@ -41,10 +41,10 @@ authRouter.post('/signup', async (req, res, next) => {
         expiresIn: '24h',
       }
     );
-
-    delete newUser.password;
-
-    return res.status(201).json({ token, user: newUser });
+    const newUserObj = newUser.toObject();
+    delete newUserObj.password;
+    console.log(newUserObj);
+    return res.status(201).json({ token, user: newUserObj });
   } catch (err) {
     return next(err);
   }
@@ -73,9 +73,10 @@ authRouter.post('/login', async (req, res, next) => {
       }
     );
 
-    delete foundUser.password;
+    const userObj = foundUser.toObject();
+    delete userObj.password;
 
-    return res.status(200).json({ token, user: foundUser });
+    return res.status(200).json({ token, user: userObj });
   } catch (err) {
     return next(err);
   }
