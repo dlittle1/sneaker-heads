@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const expressJwt = require('express-jwt');
 
 const shoeRouter = require('./routes/shoeRouter');
 const authRouter = require('./routes/authRouter');
@@ -15,6 +16,10 @@ app.use(express.json());
 
 // ROUTES
 app.use('/auth', authRouter);
+app.use(
+  '/api',
+  expressJwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] })
+);
 app.use('/api/shoes', shoeRouter);
 
 // ERROR HANDLING
