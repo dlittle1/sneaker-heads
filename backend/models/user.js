@@ -2,13 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  firstName: {
+  username: {
     type: String,
     required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
+    lowercase: true,
+    unique: true,
   },
   age: {
     type: Number,
@@ -16,21 +14,22 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    lowercase: true,
+    unique: true,
   },
-  shoes: {
-    type: Array,
-  },
-  likedShoes: {
-    type: Array,
+  memberSice: {
+    type: Date,
+    default: Date.now,
   },
   admin: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   password: {
     type: String,
     required: true,
   },
+  avatar: {},
 });
 
 userSchema.virtual('fullName').get(function () {

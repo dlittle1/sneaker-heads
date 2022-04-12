@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const shoeRouter = require('./routes/shoeRouter');
+const authRouter = require('./routes/authRouter');
 
 const app = express();
 
@@ -13,8 +14,10 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 // ROUTES
+app.use('/auth', authRouter);
 app.use('/api/shoes', shoeRouter);
 
+// ERROR HANDLING
 app.use((err, req, res, next) => {
   return res.json({ errorMessage: err.message });
 });
