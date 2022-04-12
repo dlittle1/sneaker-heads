@@ -6,12 +6,23 @@ const shoeSchema = new Schema({
     type: String,
     required: true,
   },
-  version: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  version: {
+    type: String,
+    required: true,
+  },
   year: Number,
   condition: String,
-  likes: Number,
-  imgUrl: String,
-  comments: [{ body: String, user_id: String }],
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  imgUrl: {
+    type: String,
+    required: true,
+  },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });
 
 module.exports = mongoose.model('Shoe', shoeSchema);
