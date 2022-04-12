@@ -1,13 +1,12 @@
 const Shoe = require('../models/shoe');
 
-exports.getAllShoes = (req, res, next) => {
-  Shoe.find({}, (err, shoes) => {
-    if (err) {
-      res.status(500);
-      return next(err);
-    }
-    return res.status(200).send(shoes);
-  });
+exports.getAllShoes = async (req, res, next) => {
+  try {
+    const shoes = await Shoe.find({});
+    return res.status(200).json(shoes);
+  } catch (err) {
+    return next(err);
+  }
 };
 
 exports.getOneShoe = async (req, res, next) => {
@@ -32,11 +31,12 @@ exports.getOneShoe = async (req, res, next) => {
 
 exports.createShoe = async (req, res, next) => {
   try {
-    const newShoe = await Shoe.create(req.body);
-
-    return res.status(200).send(newShoe);
+    const shoe = await Shoe.create({
+      ...req.body,
+      user: req.user._id,
+    });
+    return res.status(201).json(shoe);
   } catch (err) {
-    res.status(500);
     return next(err);
   }
 };
