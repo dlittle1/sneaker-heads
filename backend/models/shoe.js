@@ -22,6 +22,10 @@ const shoeSchema = new Schema({
     type: String,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });
 
