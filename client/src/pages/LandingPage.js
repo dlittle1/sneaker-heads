@@ -3,13 +3,10 @@ import '../styles/landingPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPersonToPortal } from '@fortawesome/pro-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import LoginSignupForm from '../components/LoginSignupForm';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/shoes');
-  };
 
   return (
     <div className='landing-page-body'>
@@ -27,10 +24,8 @@ const LandingPage = () => {
           />{' '}
           shoes
         </p>
-        <div className='landing-page-heading-enter-button'>
-          <h1 className='landing-page-heading-enter' onClick={handleClick}>
-            Enter <FontAwesomeIcon icon={faPersonToPortal} />
-          </h1>
+        <div className='landing-page-login-signup-form'>
+          <LoginSignupForm />
         </div>
       </div>
     </div>

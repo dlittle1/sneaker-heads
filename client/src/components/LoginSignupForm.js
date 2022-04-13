@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './componentStyles/loginSignupForm.css';
 import { Link } from 'react-router-dom';
-// import { UserContext } from '../context/UserProvider';
+import { useDispatch } from 'react-redux';
+import { setUserAsync } from '../redux/features/userSlice';
 
 const LoginSignupForm = () => {
-  // const { signup, login } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     email: '',
@@ -25,11 +26,11 @@ const LoginSignupForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // if (onSignupPage) {
-    //   signup(inputs);
-    // } else {
-    //   login(inputs);
-    // }
+    if (onSignupPage) {
+      // signup(inputs);
+    } else {
+      dispatch(setUserAsync(inputs));
+    }
   };
 
   return (
