@@ -31,7 +31,7 @@ authRouter.post('/signup', async (req, res, next) => {
     });
     const token = jwt.sign(
       {
-        _Id: newUser._id,
+        _id: newUser._id,
         username: newUser.username,
         email: newUser.email,
         type: 'user',
@@ -63,7 +63,7 @@ authRouter.post('/login', async (req, res, next) => {
     }
     const token = jwt.sign(
       {
-        _Id: foundUser._id,
+        _id: foundUser._id,
         username: foundUser.username,
         type: 'user',
       },
