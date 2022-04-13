@@ -4,23 +4,30 @@ import Masonry from 'react-masonry-css';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/pro-regular-svg-icons';
-import { faHeart } from '@fortawesome/pro-regular-svg-icons';
-import { faTrashCan } from '@fortawesome/pro-regular-svg-icons';
-import { faPenToSquare } from '@fortawesome/pro-regular-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { getShoesAsync } from '../redux/features/shoeSlice';
+import {
+  faPlus,
+  faPenToSquare,
+  faHeart,
+  faTrashCan,
+} from '@fortawesome/pro-regular-svg-icons';
 
 const Home = () => {
-  const [shoes, setShoes] = useState([]);
+  const shoes = useSelector((state) => state.shoes.shoes);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log(shoes);
 
   useEffect(() => {
-    axios
-      .get('/api/shoes')
-      .then((res) => setShoes(res.data))
-      .then(() => setLoading(false))
-      .catch((err) => console.error(err));
-  }, []);
+    // axios
+    //   .get('/api/shoes')
+    //   .then((res) => setShoes(res.data))
+    //   .then(() => setLoading(false))
+    //   .catch((err) => console.error(err));
+    dispatch(getShoesAsync());
+  }, [dispatch]);
 
   const breakpoints = {
     default: 5,
@@ -32,12 +39,12 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    axios
-      .delete(`/api/shoes/${id}`)
-      .then((res) =>
-        setShoes((prevShoes) => prevShoes.filter((shoe) => shoe._id !== id))
-      )
-      .catch((err) => console.error(err));
+    // axios
+    //   .delete(`/api/shoes/${id}`)
+    //   .then((res) =>
+    //     setShoes((prevShoes) => prevShoes.filter((shoe) => shoe._id !== id))
+    //   )
+    //   .catch((err) => console.error(err));
   };
 
   function handleEdit(id) {

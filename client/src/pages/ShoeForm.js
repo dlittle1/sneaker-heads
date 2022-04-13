@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../styles/shoeForm.css';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createShoeAsync } from '../redux/features/shoeSlice';
 
 const ShoeForm = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const dispatch = useDispatch();
   const year = new Date().getFullYear();
   const years = Array.from(new Array(101), (val, index) => index - 100 + year);
   const [shoe, setShoe] = useState({
@@ -37,18 +40,8 @@ const ShoeForm = () => {
   };
 
   const createShoe = () => {
-    axios
-      .post('/api/shoes', shoe)
-      .then((res) =>
-        setShoe({
-          name: '',
-          version: '',
-          condition: 'new',
-          year: 2022,
-          imgUrl: '',
-        })
-      )
-      .then(() => navigate('/shoes'))
+    dispatch(createShoeAsync(shoe))
+      .then(() => navigate('/'))
       .catch((err) => console.error(err));
   };
 
