@@ -22,13 +22,6 @@ exports.getAllShoes = async (req, res, next) => {
         path: 'user',
         select: 'username',
       },
-      {
-        path: 'comments',
-        populate: {
-          path: 'user',
-          select: 'username',
-        },
-      },
     ]);
 
     return res.status(200).json(shoes);
@@ -58,6 +51,7 @@ exports.getOneShoe = async (req, res, next) => {
 };
 
 exports.createShoe = async (req, res, next) => {
+  console.log(req.user);
   try {
     const shoe = await Shoe.create({
       ...req.body,
