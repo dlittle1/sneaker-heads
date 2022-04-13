@@ -115,15 +115,9 @@ exports.likeShoe = async (req, res, next) => {
   try {
     const shoe = await Shoe.findById(req.params.id);
     const user = await User.findById(req.user._id);
-    if (shoe.likes.includes(user._id)) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'You already liked this shoe!',
-      });
-    }
     await Shoe.findByIdAndUpdate(
       { _id: req.params.id },
-      { $push: { likes: user._id } },
+      { $addToSet: { likes: user._id } },
       { new: true }
     );
     return res.status(200).json({
@@ -139,12 +133,6 @@ exports.removeLike = async (req, res, next) => {
   try {
     const shoe = await Shoe.findById(req.params.id);
     const user = await User.findById(req.user._id);
-    if (!shoe.likes.includes(user._id)) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'You have not liked this shoe!',
-      });
-    }
     await Shoe.findByIdAndUpdate(
       { _id: req.params.id },
       { $pull: { likes: user._id } },
