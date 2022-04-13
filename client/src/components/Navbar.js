@@ -38,11 +38,11 @@ const Navbar = () => {
             </li>
             <li className='nav-item'>
               <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
-              <a href='#'>Users</a>
+              Users
             </li>
             <li className='nav-item'>
               <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-              <a href='#'>Profile</a>
+              Profile
             </li>
           </div>
         </ul>
