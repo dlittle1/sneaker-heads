@@ -7,10 +7,11 @@ const initialUser = localStorage.getItem('user')
 
 export const setUserAsync = createAsyncThunk(
   'user/setUserAsync',
-  async (user, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/auth/login', user);
+      const response = await axios.post('/auth/login', payload);
       const { token, user } = response.data;
+      console.log(response);
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       return user;
