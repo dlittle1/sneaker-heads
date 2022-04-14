@@ -17,14 +17,11 @@ exports.getAllShoes = async (req, res, next) => {
       query = query.sort(sortBy);
     }
 
-    const shoes = await query.populate([
-      {
-        path: 'user',
-        select: 'username',
-      },
-    ]);
+    //populate the user with username and avatar
 
-    return res.status(200).json(shoes);
+    const shoes = await query.populate('user', ['username', 'avatar']);
+
+    return res.status(200).send(shoes);
   } catch (err) {
     return next(err);
   }
@@ -80,9 +77,10 @@ exports.updateShoe = async (req, res, next) => {
 exports.deleteShoe = async (req, res, next) => {
   try {
     await Shoe.findByIdAndDelete({ _id: req.params.id });
-    res.status(204).json({
+    return res.status(200).json({
       status: 'success',
-      data: null,
+      message: 'Shoe deleted!',
+      data: { _id: req.params.id },
     });
   } catch (err) {
     res.status(500);
