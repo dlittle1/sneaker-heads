@@ -18,7 +18,7 @@ const Navbar = () => {
     <>
       <nav className='navbar'>
         <ul className='nav-list'>
-          <Link to='/shoes' className='nav--logo'>
+          <Link to='/' className='nav--logo'>
             <div className='nav-item'>
               <p className='nav--logo-name'>Sneaker-Heads</p>
             </div>
@@ -28,7 +28,7 @@ const Navbar = () => {
           </div>
           <div className='nav-items'>
             <li className='nav-item'>
-              <Link to='/shoes'>
+              <Link to='/'>
                 <FontAwesomeIcon
                   icon={faHouseBlank}
                   className='nav-item-icon'
