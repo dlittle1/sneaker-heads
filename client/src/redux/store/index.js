@@ -4,7 +4,7 @@ import shoeReducer from '../features/shoeSlice';
 
 export default configureStore({
   reducer: {
-    user: userReducer,
     shoes: shoeReducer,
+    user: userReducer,
   },
 });
