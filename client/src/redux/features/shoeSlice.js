@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const userTokenAxios = axios.create({
+const token = localStorage.getItem('token');
+const initState = { shoes: [] };
+console.log(token);
+let userTokenAxios = axios.create({
   baseURL: '/api/shoes',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -25,8 +28,10 @@ export const getShoesAsync = createAsyncThunk(
   'shoes/getShoesAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.get('/');
-      console.log(response);
+      console.log(userTokenAxios.defaults.headers);
+      const response = await userTokenAxios.get(`?sortby=${payload}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -34,31 +39,11 @@ export const getShoesAsync = createAsyncThunk(
   }
 );
 
-export const getUserShoesAsync = createAsyncThunk(
-  'shoes/getUserShoesAsync',
-  userTokenAxios
-    .get('/')
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error))
-);
-
-export const getShoesSortedByNewAsync = createAsyncThunk(
-  'shoes/getShoesSortedByNew',
+export const getOneShoeAsync = createAsyncThunk(
+  'shoes/getOneShoeAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.get('/?sort=-createdAt');
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const getShoesSortedByNumLikesAsync = createAsyncThunk(
-  'shoes/getShoesSortedByNumLikes',
-  async (payload, { rejectWithValue }) => {
-    try {
-      const response = await userTokenAxios.get('/?sort=-likes');
+      const response = await userTokenAxios.get(`/${payload}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -104,9 +89,7 @@ export const deleteShoeAsync = createAsyncThunk(
 
 export const shoeSlice = createSlice({
   name: 'shoes',
-  initialState: {
-    shoes: [],
-  },
+  initialState: initState,
   reducers: {
     setShoes: (state, action) => {
       state.shoes = action.payload;
@@ -116,13 +99,7 @@ export const shoeSlice = createSlice({
     [getShoesAsync.fulfilled]: (state, action) => {
       state.shoes = action.payload;
     },
-    [getUserShoesAsync.fulfilled]: (state, action) => {
-      state.shoes = action.payload;
-    },
-    [getShoesSortedByNewAsync.fulfilled]: (state, action) => {
-      state.shoes = action.payload;
-    },
-    [getShoesSortedByNumLikesAsync.fulfilled]: (state, action) => {
+    [getOneShoeAsync.fulfilled]: (state, action) => {
       state.shoes = action.payload;
     },
     [createShoeAsync.fulfilled]: (state, action) => {
@@ -135,7 +112,10 @@ export const shoeSlice = createSlice({
       state.shoes[index] = action.payload;
     },
     [deleteShoeAsync.fulfilled]: (state, action) => {
-      const index = state.shoes.findIndex((shoe) => shoe.id === action.payload);
+      console.log(action.payload.data._id);
+      const index = state.shoes.findIndex(
+        (shoe) => shoe._id === action.payload.data._id
+      );
       state.shoes.splice(index, 1);
     },
   },
