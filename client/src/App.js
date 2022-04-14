@@ -5,6 +5,7 @@ import ShoeForm from './pages/ShoeForm';
 import Shoe from './pages/Shoe';
 import LandingPage from './pages/LandingPage';
 import { useSelector } from 'react-redux';
+import ShoesGrid from './components/ShoesGrid';
 
 function App() {
   const user = useSelector((state) => state.user.isLoggedIn);
@@ -20,7 +21,17 @@ function App() {
           element={user ? <Navigate replace to='/' /> : <LandingPage />}
         />
         <Route element={!user ? <Navigate replace to='/login' /> : <Navbar />}>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home />}>
+            <Route index element={<ShoesGrid sortby='-likes' />} />
+            <Route
+              path='/shoes/new'
+              element={<ShoesGrid sortby='-createdAt' />}
+            />
+            <Route
+              path='/shoes/alphabetical'
+              element={<ShoesGrid sortby='name' />}
+            />
+          </Route>
           <Route path='/shoes/create' element={<ShoeForm />} />
           <Route path='/shoes/edit/:id' element={<ShoeForm />} />
           <Route path='/shoes/:id' element={<Shoe />} />
