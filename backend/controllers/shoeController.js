@@ -1,4 +1,5 @@
 const Shoe = require('../models/shoe');
+const Comment = require('../models/comment');
 
 exports.getAllShoes = async (req, res, next) => {
   let queryObject = { ...req.query };
@@ -19,7 +20,11 @@ exports.getAllShoes = async (req, res, next) => {
 
     //populate the user with username and avatar
 
-    const shoes = await query.populate('user', ['username', 'avatar']);
+    const shoes = await query
+      .populate('user', ['username', 'avatar'])
+      .populate([
+        { path: 'comments', populate: { path: 'user', select: 'username' } },
+      ]);
 
     return res.status(200).send(shoes);
   } catch (err) {
@@ -29,7 +34,11 @@ exports.getAllShoes = async (req, res, next) => {
 
 exports.getOneShoe = async (req, res, next) => {
   try {
-    const shoe = await Shoe.findById(req.params.id);
+    const shoe = await Shoe.findById(req.params.id)
+      .populate('user', ['username', 'avatar'])
+      .populate([
+        { path: 'comments', populate: { path: 'user', select: 'username' } },
+      ]);
 
     if (!shoe) {
       res.status(404).json({
@@ -91,13 +100,15 @@ exports.deleteShoe = async (req, res, next) => {
 exports.createComment = async (req, res, next) => {
   try {
     const shoe = await Shoe.findById(req.params.id);
+
     const comment = await Comment.create({
-      ...req.body,
+      body: req.body.comment,
       user: req.user._id,
     });
     shoe.comments.push(comment._id);
     await shoe.save();
-    return res.status(201).json(comment);
+
+    return res.status(201).send(comment);
   } catch (err) {
     return next(err);
   }
