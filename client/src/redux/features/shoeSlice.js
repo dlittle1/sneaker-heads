@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const token = localStorage.getItem('token');
-const initState = { shoes: [] };
 console.log(token);
 let userTokenAxios = axios.create({
   baseURL: '/api/shoes',
@@ -44,7 +43,7 @@ export const getOneShoeAsync = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await userTokenAxios.get(`/${payload}`);
-      return response.data;
+      return response.data.shoe;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -56,6 +55,21 @@ export const createShoeAsync = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await userTokenAxios.post('/', payload);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const addCommentToShoeAsync = createAsyncThunk(
+  'shoes/addCommentToShoeAsync',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await userTokenAxios.post(
+        `/${payload.shoeId}/comments`,
+        { comment: payload.body }
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -89,10 +103,16 @@ export const deleteShoeAsync = createAsyncThunk(
 
 export const shoeSlice = createSlice({
   name: 'shoes',
-  initialState: initState,
+  initialState: {
+    shoes: [],
+    shoe: {},
+  },
   reducers: {
     setShoes: (state, action) => {
       state.shoes = action.payload;
+    },
+    setShoe: (state, action) => {
+      state.shoe = action.payload;
     },
   },
   extraReducers: {
@@ -100,10 +120,13 @@ export const shoeSlice = createSlice({
       state.shoes = action.payload;
     },
     [getOneShoeAsync.fulfilled]: (state, action) => {
-      state.shoes = action.payload;
+      state.shoe = action.payload;
     },
     [createShoeAsync.fulfilled]: (state, action) => {
       state.shoes.push(action.payload);
+    },
+    [addCommentToShoeAsync.fulfilled]: (state, action) => {
+      state.shoe.comments.push(action.payload);
     },
     [updateShoeAsync.fulfilled]: (state, action) => {
       const index = state.shoes.findIndex(
@@ -112,7 +135,6 @@ export const shoeSlice = createSlice({
       state.shoes[index] = action.payload;
     },
     [deleteShoeAsync.fulfilled]: (state, action) => {
-      console.log(action.payload.data._id);
       const index = state.shoes.findIndex(
         (shoe) => shoe._id === action.payload.data._id
       );
@@ -120,5 +142,7 @@ export const shoeSlice = createSlice({
     },
   },
 });
+
+export const { setShoe } = shoeSlice.actions;
 
 export default shoeSlice.reducer;

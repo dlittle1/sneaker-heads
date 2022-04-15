@@ -8,36 +8,37 @@ import { faTrashCan } from '@fortawesome/pro-regular-svg-icons';
 import { faPenToSquare } from '@fortawesome/pro-regular-svg-icons';
 import '../styles/shoe.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getShoesAsync } from '../redux/features/shoeSlice';
+import { getOneShoeAsync } from '../redux/features/shoeSlice';
 import { BigHead } from '@bigheads/core';
+import ShoeComments from '../components/ShoeComments';
 
 const Shoe = () => {
   const params = useParams();
   const shoeId = params.id;
   const dispatch = useDispatch();
-  const [shoe, setShoe] = useState(
-    useSelector((state) =>
-      state.shoes.shoes.find((shoe) => shoe._id === shoeId)
-    )
+  const [shoeState, setShoeState] = useState(
+    useSelector((state) => state.shoes.shoe)
   );
+  const [isCommenting, setIsCommenting] = useState(false);
+  const comments = useSelector((state) => state.shoes.shoe.comments);
   const currentUser = useSelector((state) => state.user.user._id);
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem('token');
+
   useEffect(() => {
     // if local storage token exists, get shoes
-    console.log(token);
-    if (token !== null) {
-      if (shoe === undefined) {
-        dispatch(getShoesAsync()).then((response) => {
-          console.log(response);
-          setShoe(response.payload.find((shoe) => shoe._id === shoeId));
-          setLoading(false);
-        });
-      } else {
-        setLoading(false);
-      }
+    if (Object.keys(shoeState).length === 0) {
+      dispatch(getOneShoeAsync(shoeId)).then((response) => {
+        setShoeState(response.payload);
+      });
     }
-  }, [shoe, shoeId, token]);
+  }, [dispatch, shoeState, shoeId]);
+
+  useEffect(() => {
+    if (Object.keys(shoeState).length > 0) {
+      console.log('shoeState', shoeState);
+      setLoading(false);
+    }
+  }, [shoeState]);
   const navigate = useNavigate();
 
   function handleEdit(id) {
@@ -51,9 +52,14 @@ const Shoe = () => {
       .catch((err) => console.error(err));
   };
 
-  if (loading && !shoe) {
+  console.log(loading);
+  if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleCommentClick = () => {
+    setIsCommenting(!isCommenting);
+  };
 
   return (
     <div className='shoe-body'>
@@ -62,24 +68,24 @@ const Shoe = () => {
           <div
             className='shoe-image-mobile'
             style={{
-              backgroundImage: `url(${shoe.imgUrl})`,
+              backgroundImage: `url(${shoeState.imgUrl})`,
             }}
           ></div>
           <div className='shoe-image'>
-            <img src={shoe.imgUrl} />
+            <img src={shoeState.imgUrl} />
           </div>
         </div>
         <div className='shoe-info-container'>
           <div className='shoe-info'>
             <div className='shoe-info-title'>
-              <p>Owned By: {shoe.user.username}</p>
-              <BigHead {...shoe.user.avatar} />
+              <p>Owned By: {shoeState.user.username}</p>
+              <BigHead {...shoeState.user.avatar} />
             </div>
-            <h1 className='shoe-info-name'>{shoe.name}</h1>
-            <h2 className='shoe-info-version'>{shoe.version}</h2>
+            <h1 className='shoe-info-name'>{shoeState.name}</h1>
+            <h2 className='shoe-info-version'>{shoeState.version}</h2>
             <div className='shoe-info-year-condition'>
-              <h3>Year: {shoe.year}</h3>
-              <h3>Condition: {shoe.condition}</h3>
+              <h3>Year: {shoeState.year}</h3>
+              <h3>Condition: {shoeState.condition}</h3>
             </div>
           </div>
           <div className='shoe-info-buttons'>
@@ -90,11 +96,11 @@ const Shoe = () => {
                 style={{ color: 'pink' }}
               />
             </div>
-            {currentUser === shoe.user._id && (
+            {currentUser === shoeState.user._id && (
               <>
                 <div
                   title='Delete'
-                  onClick={() => handleDelete(shoe._id)}
+                  onClick={() => handleDelete(shoeState._id)}
                   className='shoe-info-button'
                 >
                   <FontAwesomeIcon
@@ -105,7 +111,7 @@ const Shoe = () => {
                 </div>
                 <div
                   title='Edit'
-                  onClick={() => handleEdit(shoe._id)}
+                  onClick={() => handleEdit(shoeState._id)}
                   className='shoe-info-button'
                 >
                   <FontAwesomeIcon
@@ -116,6 +122,14 @@ const Shoe = () => {
                 </div>
               </>
             )}
+          </div>
+          <div className='shoe-info-comments-container'>
+            <ShoeComments
+              shoe={shoeState}
+              handleCommentClick={handleCommentClick}
+              isCommenting={isCommenting}
+              comments={comments}
+            />
           </div>
         </div>
       </div>
