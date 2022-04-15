@@ -5,7 +5,7 @@ import ShoeForm from './pages/ShoeForm';
 import Shoe from './pages/Shoe';
 import LandingPage from './pages/LandingPage';
 import { useSelector } from 'react-redux';
-import ShoesGrid from './components/ShoesGrid';
+import ShoesGrid from './components/ShoesGrid/ShoesGrid';
 
 function App() {
   const user = useSelector((state) => state.user.isLoggedIn);
