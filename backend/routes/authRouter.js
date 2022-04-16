@@ -19,8 +19,8 @@ authRouter.post('/signup', async (req, res, next) => {
     if (foundUser) {
       return res.status(400).json({ message: 'Username already exists' });
     }
-    foundUser = await User.findOne({ email });
-    if (foundUser) {
+    const foundUserEmail = await User.findOne({ email });
+    if (foundUserEmail) {
       return res.status(400).json({ message: 'Email already exists' });
     }
     const newUser = await User.create({
