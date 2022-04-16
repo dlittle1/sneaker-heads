@@ -48,6 +48,21 @@
   margin-right: 0;
 }
 
+.grid-item-num-likes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  background-color: rgb(236, 122, 122);
+  color: white;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+}
+
 .grid-text-container {
   position: absolute;
   height: 99%;
@@ -68,6 +83,12 @@
 
 .grid-item:hover .grid-item-button {
   visibility: visible;
+}
+
+.grid-item:hover .grid-item-num-likes {
+  color: rgb(236, 122, 122);
+  background-color: white;
+  z-index: 100;
 }
 
 .grid-item-text {
