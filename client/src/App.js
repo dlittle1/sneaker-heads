@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import ShoesGrid from './components/ShoesGrid/ShoesGrid';
 
 function App() {
-  const user = useSelector((state) => state.user.isLoggedIn);
+  const user = useSelector((state) => state.currentUser.isLoggedIn);
   return (
     <BrowserRouter>
       <Routes>
@@ -22,7 +22,7 @@ function App() {
         />
         <Route element={!user ? <Navigate replace to='/login' /> : <Navbar />}>
           <Route path='/' element={<Home />}>
-            <Route index element={<ShoesGrid sortby='-likes' />} />
+            <Route index element={<ShoesGrid sortby='-numLikes' />} />
             <Route
               path='/shoes/new'
               element={<ShoesGrid sortby='-createdAt' />}
