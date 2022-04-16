@@ -8,10 +8,8 @@ import {
   faTrashCan,
 } from '@fortawesome/pro-regular-svg-icons';
 
-// if (shoe.likedBy.includes(currentUser)) change style to opposite
-
 const GridItemButtons = ({ shoe, handleDelete, handleEdit, handleLike }) => {
-  const currentUser = useSelector((state) => state.user.user._id);
+  const currentUser = useSelector((state) => state.currentUser.user._id);
   const likeButtonStyle = !shoe.likes.includes(currentUser)
     ? {
         color: 'rgb(236, 122, 122)',
