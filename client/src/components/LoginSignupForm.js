@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './componentStyles/loginSignupForm.css';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserAsync } from '../redux/features/userSlice';
+import { setUserAsync } from '../redux/features/currentUserSlice';
 
 const LoginSignupForm = () => {
   const dispatch = useDispatch();
