@@ -2,7 +2,11 @@ import React from 'react';
 import GridItemButtons from './GridItemButtons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteShoeAsync, setShoe } from '../../redux/features/shoeSlice';
+import {
+  deleteShoeAsync,
+  setShoe,
+  likeShoe,
+} from '../../redux/features/shoeSlice';
 
 const GridItem = ({ shoe }) => {
   const navigate = useNavigate();
@@ -22,6 +26,10 @@ const GridItem = ({ shoe }) => {
     dispatch(setShoe({ ...shoe }));
   }
 
+  function handleLike(id) {
+    dispatch(likeShoe(id));
+  }
+
   return (
     <div className='grid-item'>
       <img
@@ -32,6 +40,7 @@ const GridItem = ({ shoe }) => {
       <GridItemButtons
         handleDelete={handleDelete}
         handleEdit={handleEdit}
+        handleLike={handleLike}
         shoe={shoe}
       />
       <div

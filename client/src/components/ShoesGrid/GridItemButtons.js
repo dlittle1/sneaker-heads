@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 
 import {
   faPenToSquare,
@@ -7,20 +8,32 @@ import {
   faTrashCan,
 } from '@fortawesome/pro-regular-svg-icons';
 
-const GridItemButtons = ({ shoe, handleDelete, handleEdit }) => {
+// if (shoe.likedBy.includes(currentUser)) change style to opposite
+
+const GridItemButtons = ({ shoe, handleDelete, handleEdit, handleLike }) => {
+  const currentUser = useSelector((state) => state.user.user._id);
+  const likeButtonStyle = !shoe.likes.includes(currentUser)
+    ? {
+        color: 'rgb(236, 122, 122)',
+        background: 'white',
+      }
+    : {
+        color: 'white',
+        background: 'rgb(236, 122, 122)',
+      };
+
   return (
     <div className='grid-item-buttons'>
       <div
-        className='grid-item-button-like grid-item-button'
+        className=' grid-item-button'
         title='Add to Wishlist'
+        onClick={() => handleLike(shoe._id)}
+        style={likeButtonStyle}
       >
         <FontAwesomeIcon
           icon={faHeart}
           size='1x'
           className='grid-item-button-icon'
-          style={{
-            color: 'rgb(236, 122, 122)',
-          }}
         />
       </div>
 

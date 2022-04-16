@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const token = localStorage.getItem('token');
-console.log(token);
 let userTokenAxios = axios.create({
   baseURL: '/api/shoes',
   headers: {
@@ -27,7 +25,6 @@ export const getShoesAsync = createAsyncThunk(
   'shoes/getShoesAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      console.log(userTokenAxios.defaults.headers);
       const response = await userTokenAxios.get(`?sortby=${payload}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
@@ -77,6 +74,18 @@ export const addCommentToShoeAsync = createAsyncThunk(
   }
 );
 
+export const likeShoe = createAsyncThunk(
+  'shoes/likeShoe',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await userTokenAxios.post(`/${payload}/like`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateShoeAsync = createAsyncThunk(
   'shoes/updateShoeAsync',
   async (payload, { rejectWithValue }) => {
@@ -112,6 +121,7 @@ export const shoeSlice = createSlice({
       state.shoes = action.payload;
     },
     setShoe: (state, action) => {
+      console.log(state.shoe);
       state.shoe = action.payload;
     },
   },
@@ -126,7 +136,12 @@ export const shoeSlice = createSlice({
       state.shoes.push(action.payload);
     },
     [addCommentToShoeAsync.fulfilled]: (state, action) => {
+      console.log(state.shoe.comments);
       state.shoe.comments.push(action.payload);
+    },
+    [likeShoe.fulfilled]: (state, action) => {
+      const shoe = state.shoes.find((shoe) => shoe._id === action.payload._id);
+      shoe.likes = action.payload.likes;
     },
     [updateShoeAsync.fulfilled]: (state, action) => {
       const index = state.shoes.findIndex(
