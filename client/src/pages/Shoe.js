@@ -21,7 +21,7 @@ const Shoe = () => {
   );
   const [isCommenting, setIsCommenting] = useState(false);
   const comments = useSelector((state) => state.shoes.shoe.comments);
-  const currentUser = useSelector((state) => state.user.user._id);
+  const currentUser = useSelector((state) => state.currentUser.user._id);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +35,6 @@ const Shoe = () => {
 
   useEffect(() => {
     if (Object.keys(shoeState).length > 0) {
-      console.log('shoeState', shoeState);
       setLoading(false);
     }
   }, [shoeState]);
@@ -52,7 +51,6 @@ const Shoe = () => {
       .catch((err) => console.error(err));
   };
 
-  console.log(loading);
   if (loading) {
     return <div>Loading...</div>;
   }
