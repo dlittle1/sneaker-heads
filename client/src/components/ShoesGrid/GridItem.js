@@ -7,6 +7,8 @@ import {
   setShoe,
   likeShoe,
 } from '../../redux/features/shoeSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/pro-regular-svg-icons';
 
 const GridItem = ({ shoe }) => {
   const navigate = useNavigate();
@@ -32,6 +34,10 @@ const GridItem = ({ shoe }) => {
 
   return (
     <div className='grid-item'>
+      <div className='grid-item-num-likes'>
+        <FontAwesomeIcon icon={faHeart} size='1x' />
+        <span>{shoe.numLikes}</span>
+      </div>
       <img
         src={shoe.imgUrl}
         className='grid-img'
