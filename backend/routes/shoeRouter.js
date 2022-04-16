@@ -9,10 +9,12 @@ const {
   updateShoe,
   deleteShoe,
   createComment,
+  likeShoeHandler,
 } = shoeController;
 
 router.route('/').get(getAllShoes).post(createShoe);
 router.route('/:id').get(getOneShoe).put(updateShoe).delete(deleteShoe);
 router.route('/:id/comments').post(createComment);
+router.route('/:id/like').post(likeShoeHandler);
 
 module.exports = router;
