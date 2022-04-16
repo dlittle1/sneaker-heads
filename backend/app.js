@@ -4,6 +4,7 @@ const expressJwt = require('express-jwt');
 
 const shoeRouter = require('./routes/shoeRouter');
 const authRouter = require('./routes/authRouter');
+const usersShoesRouter = require('./routes/usersShoesRouter');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(
   expressJwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] })
 );
 app.use('/api/shoes', shoeRouter);
+app.use('/api/users/shoes', usersShoesRouter);
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {
