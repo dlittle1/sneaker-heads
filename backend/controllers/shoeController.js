@@ -3,9 +3,8 @@ const Comment = require('../models/comment');
 
 exports.getAllShoes = async (req, res, next) => {
   let queryObject = { ...req.query };
-  const { page, limit, sort, ...query } = queryObject;
-
   let queryString = JSON.stringify(queryObject);
+
   queryString = queryString.replace(
     /\b(gt|gte|lt|lte|in|regex)\b/g,
     (match) => `$${match}`
@@ -17,8 +16,6 @@ exports.getAllShoes = async (req, res, next) => {
       let sortBy = req.query.sort.split(',').join(' ');
       query = query.sort(sortBy);
     }
-
-    //populate the user with username and avatar
 
     const shoes = await query
       .populate('user', ['username', 'avatar'])
@@ -125,36 +122,18 @@ exports.likeShoeHandler = async (req, res, next) => {
     if (shoe.likes.includes(user._id)) {
       const updatedShoe = await Shoe.findByIdAndUpdate(
         { _id: req.params.id },
-        { $pull: { likes: user._id } },
+        { $pull: { likes: user._id }, $inc: { numLikes: -1 } },
         { new: true }
       );
       return res.status(200).send(updatedShoe);
     } else {
       const updatedShoe = await Shoe.findByIdAndUpdate(
         { _id: req.params.id },
-        { $addToSet: { likes: req.user._id } },
+        { $addToSet: { likes: req.user._id }, $inc: { numLikes: 1 } },
         { new: true }
       );
       return res.status(200).send(updatedShoe);
     }
-  } catch (err) {
-    return next(err);
-  }
-};
-
-exports.removeLike = async (req, res, next) => {
-  try {
-    const shoe = await Shoe.findById(req.params.id);
-    const user = await User.findById(req.user._id);
-    await Shoe.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $pull: { likes: user._id } },
-      { new: true }
-    );
-    return res.status(200).json({
-      status: 'success',
-      message: 'You unliked this shoe!',
-    });
   } catch (err) {
     return next(err);
   }
