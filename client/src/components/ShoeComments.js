@@ -10,7 +10,6 @@ const ShoeComments = ({
 }) => {
   const timeAgo = new TimeAgo('en-US');
 
-  console.log(shoe);
   return (
     <>
       <button className='comments-open-button' onClick={handleCommentClick}>
