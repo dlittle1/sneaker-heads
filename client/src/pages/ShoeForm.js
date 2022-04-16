@@ -3,7 +3,11 @@ import '../styles/shoeForm.css';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createShoeAsync } from '../redux/features/shoeSlice';
+import {
+  createShoeAsync,
+  getOneShoeAsync,
+  updateShoeAsync,
+} from '../redux/features/shoeSlice';
 
 const ShoeForm = () => {
   const navigate = useNavigate();
@@ -21,10 +25,10 @@ const ShoeForm = () => {
 
   useEffect(() => {
     if (params.id) {
-      axios
-        .get(`/api/shoes/${params.id}`)
-        .then((res) => setShoe(res.data.shoe))
-        .catch((err) => console.error(err));
+      dispatch(getOneShoeAsync(params.id)).then((shoe) => {
+        console.log(shoe);
+        setShoe(shoe.payload);
+      });
     }
   }, []);
 
@@ -46,18 +50,9 @@ const ShoeForm = () => {
   };
 
   const editShoe = () => {
-    axios
-      .put(`/api/shoes/${params.id}`, shoe)
-      .then((res) =>
-        setShoe({
-          name: '',
-          version: '',
-          condition: 'new',
-          year: 2022,
-          imgUrl: '',
-        })
-      )
-      .then(() => navigate('/shoes'))
+    const updateShoe = { ...shoe, _id: params.id };
+    dispatch(updateShoeAsync(shoe))
+      .then(() => navigate('/'))
       .catch((err) => console.error(err));
   };
 

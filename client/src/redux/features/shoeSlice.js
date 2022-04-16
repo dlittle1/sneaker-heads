@@ -90,7 +90,7 @@ export const updateShoeAsync = createAsyncThunk(
   'shoes/updateShoeAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.put(`/${payload.id}`, payload);
+      const response = await userTokenAxios.put(`/${payload._id}`, payload);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -146,7 +146,7 @@ export const shoeSlice = createSlice({
     },
     [updateShoeAsync.fulfilled]: (state, action) => {
       const index = state.shoes.findIndex(
-        (shoe) => shoe.id === action.payload.id
+        (shoe) => shoe._id === action.payload._id
       );
       state.shoes[index] = action.payload;
     },
