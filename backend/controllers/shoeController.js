@@ -104,7 +104,11 @@ exports.createComment = async (req, res, next) => {
     const comment = await Comment.create({
       body: req.body.comment,
       user: req.user._id,
+    }).then((comment) => {
+      comment.populate('user', ['username', 'avatar']);
+      return comment;
     });
+
     shoe.comments.push(comment._id);
     await shoe.save();
 
@@ -114,19 +118,25 @@ exports.createComment = async (req, res, next) => {
   }
 };
 
-exports.likeShoe = async (req, res, next) => {
+exports.likeShoeHandler = async (req, res, next) => {
   try {
     const shoe = await Shoe.findById(req.params.id);
-    const user = await User.findById(req.user._id);
-    await Shoe.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $addToSet: { likes: user._id } },
-      { new: true }
-    );
-    return res.status(200).json({
-      status: 'success',
-      message: 'You liked this shoe!',
-    });
+    const user = req.user;
+    if (shoe.likes.includes(user._id)) {
+      const updatedShoe = await Shoe.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $pull: { likes: user._id } },
+        { new: true }
+      );
+      return res.status(200).send(updatedShoe);
+    } else {
+      const updatedShoe = await Shoe.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $addToSet: { likes: req.user._id } },
+        { new: true }
+      );
+      return res.status(200).send(updatedShoe);
+    }
   } catch (err) {
     return next(err);
   }
