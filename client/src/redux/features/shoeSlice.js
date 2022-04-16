@@ -25,7 +25,7 @@ export const getShoesAsync = createAsyncThunk(
   'shoes/getShoesAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.get(`?sortby=${payload}`, {
+      const response = await userTokenAxios.get(`?sort=${payload}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       return response.data;
@@ -121,7 +121,6 @@ export const shoeSlice = createSlice({
       state.shoes = action.payload;
     },
     setShoe: (state, action) => {
-      console.log(state.shoe);
       state.shoe = action.payload;
     },
   },
@@ -142,6 +141,8 @@ export const shoeSlice = createSlice({
     [likeShoe.fulfilled]: (state, action) => {
       const shoe = state.shoes.find((shoe) => shoe._id === action.payload._id);
       shoe.likes = action.payload.likes;
+
+      shoe.numLikes = action.payload.numLikes;
     },
     [updateShoeAsync.fulfilled]: (state, action) => {
       const index = state.shoes.findIndex(
