@@ -51,7 +51,9 @@ export const createShoeAsync = createAsyncThunk(
   'shoes/createShoeAsync',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.post('/', payload);
+      const response = await userTokenAxios.post('/', payload, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

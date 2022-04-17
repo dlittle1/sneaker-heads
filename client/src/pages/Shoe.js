@@ -37,6 +37,8 @@ const Shoe = () => {
     setIsCommenting(!isCommenting);
   };
 
+  console.log(shoe);
+
   return (
     <div className='shoe-body'>
       <div className='shoe-container'>
