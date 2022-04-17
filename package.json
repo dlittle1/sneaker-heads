@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dlittle1/sneaker-heads#readme",
   "dependencies": {
+    "@fortawesome/pro-solid-svg-icons": "^6.1.1",
     "concurrently": "^7.0.0"
   },
   "engines": {
