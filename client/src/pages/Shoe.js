@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/shoe.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,6 +15,7 @@ const Shoe = () => {
   const [isCommenting, setIsCommenting] = useState(false);
   const comments = useSelector((state) => state.shoes.shoe.comments);
   const [loading, setLoading] = useState(true);
+  const commentRef = useRef();
 
   useEffect(() => {
     // if local storage token exists, get shoes
@@ -28,6 +29,13 @@ const Shoe = () => {
       setLoading(false);
     }
   }, [shoe]);
+
+  useEffect(() => {
+    if (isCommenting) {
+      commentRef.current.focus();
+      commentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isCommenting]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -54,28 +62,31 @@ const Shoe = () => {
           </div>
         </div>
         <div className='shoe-info-container'>
-          <div className='shoe-info'>
-            <div className='shoe-info-title'>
-              <p>Owned By: {shoe.user.username}</p>
-              <BigHead {...shoe.user.avatar} />
+          <div className='shoe-info-main'>
+            <div className='shoe-info'>
+              <div className='shoe-info-title'>
+                <p>Owned By: {shoe.user.username}</p>
+                <BigHead {...shoe.user.avatar} />
+              </div>
+              <h1 className='shoe-info-name'>{shoe.name}</h1>
+              <h2 className='shoe-info-version'>{shoe.version}</h2>
+              <div className='shoe-info-year-condition'>
+                <h3>Year: {shoe.year}</h3>
+                <h3>Condition: {shoe.condition}</h3>
+              </div>
             </div>
-            <h1 className='shoe-info-name'>{shoe.name}</h1>
-            <h2 className='shoe-info-version'>{shoe.version}</h2>
-            <div className='shoe-info-year-condition'>
-              <h3>Year: {shoe.year}</h3>
-              <h3>Condition: {shoe.condition}</h3>
+            <div className='shoe-info-buttons'>
+              <ShoeActionButtons shoe={shoe} />
             </div>
-          </div>
-          <div className='shoe-info-buttons'>
-            <ShoeActionButtons shoe={shoe} />
-          </div>
-          <div className='shoe-info-comments-container'>
-            <ShoeComments
-              shoe={shoe}
-              handleCommentClick={handleCommentClick}
-              isCommenting={isCommenting}
-              comments={comments}
-            />
+            <div className='shoe-info-comments-container'>
+              <ShoeComments
+                shoe={shoe}
+                handleCommentClick={handleCommentClick}
+                isCommenting={isCommenting}
+                comments={comments}
+                commentRef={commentRef}
+              />
+            </div>
           </div>
         </div>
       </div>

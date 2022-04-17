@@ -7,6 +7,7 @@ const ShoeComments = ({
   isCommenting,
   handleCommentSubmit,
   comments,
+  commentRef,
 }) => {
   const timeAgo = new TimeAgo('en-US');
 
@@ -15,7 +16,11 @@ const ShoeComments = ({
       <button className='comments-open-button' onClick={handleCommentClick}>
         comment
       </button>
-      <CommentForm isCommenting={isCommenting} shoeId={shoe._id} />
+      <CommentForm
+        commentRef={commentRef}
+        isCommenting={isCommenting}
+        shoeId={shoe._id}
+      />
       {comments && (
         <div>
           {comments.map((comment, index) => (
