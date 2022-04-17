@@ -76,21 +76,33 @@
   margin-top: 10px;
 }
 
-.shoe-info-buttons {
-  display: flex;
-  margin-left: 50px;
-  width: 200px;
-  justify-content: space-between;
-  margin-top: 30px;
-}
-
-.shoe-info-button:hover {
-  cursor: pointer;
-}
-
 .shoe-info-comments-container {
   margin-left: 50px;
   margin-top: 30px;
+}
+
+.shoe-info-buttons {
+  margin-left: 50px;
+}
+.shoe-info-buttons .shoe-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 50%;
+}
+
+.shoe-info-buttons .shoe-action-button {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  position: relative;
+}
+
+.shoe-info-buttons .shoe-action-button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 900px) {
@@ -141,9 +153,5 @@
   }
   .shoe-info {
     margin-top: 0;
-  }
-  .shoe-info-buttons {
-    margin-top: 10px;
-    width: 70%;
   }
 }

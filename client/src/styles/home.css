@@ -81,7 +81,7 @@
   cursor: pointer;
 }
 
-.grid-item:hover .grid-item-button {
+.grid-item:hover .shoe-action-button {
   visibility: visible;
 }
 
@@ -100,28 +100,7 @@
   font-weight: 700;
   margin-bottom: -5px;
 }
-
-.grid-item-button {
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  visibility: hidden;
-  position: relative;
-  z-index: 20;
-}
-
-.grid-item-button-like {
-}
-
-.grid-item-button-delete {
-  background: rgb(236, 122, 122);
-}
-
-.grid-item-button-edit {
-  background: rgb(92, 159, 235);
-}
-
-.grid-item-buttons {
+.grid-item .shoe-action-buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -130,15 +109,20 @@
   width: 100%;
 }
 
-.grid-item-button-icon {
+.grid-item .shoe-action-button {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  position: relative;
+  z-index: 20;
+}
+
+.grid-item .shoe-action-button-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.grid-item-button:hover {
-  cursor: pointer;
 }
 
 .grid-img {
