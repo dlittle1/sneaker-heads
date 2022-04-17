@@ -135,14 +135,21 @@ export const shoeSlice = createSlice({
       state.shoes.push(action.payload);
     },
     [addCommentToShoeAsync.fulfilled]: (state, action) => {
-      console.log(state.shoe.comments);
       state.shoe.comments.push(action.payload);
     },
     [likeShoe.fulfilled]: (state, action) => {
-      const shoe = state.shoes.find((shoe) => shoe._id === action.payload._id);
-      shoe.likes = action.payload.likes;
+      if (state.shoe._id === action.payload._id) {
+        state.shoe.likes = action.payload.likes;
+        state.shoe.numLikes = action.payload.numLikes;
+      }
 
-      shoe.numLikes = action.payload.numLikes;
+      if (state.shoes.length > 0) {
+        const shoe = state.shoes.find(
+          (shoe) => shoe._id === action.payload._id
+        );
+        shoe.likes = action.payload.likes;
+        shoe.numLikes = action.payload.numLikes;
+      }
     },
     [updateShoeAsync.fulfilled]: (state, action) => {
       const index = state.shoes.findIndex(
