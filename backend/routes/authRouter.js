@@ -43,7 +43,6 @@ authRouter.post('/signup', async (req, res, next) => {
     );
     const newUserObj = newUser.toObject();
     delete newUserObj.password;
-    console.log(newUserObj);
     return res.status(201).json({ token, user: newUserObj });
   } catch (err) {
     return next(err);

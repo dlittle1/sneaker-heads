@@ -26,7 +26,6 @@ const ShoeForm = () => {
   useEffect(() => {
     if (params.id) {
       dispatch(getOneShoeAsync(params.id)).then((shoe) => {
-        console.log(shoe);
         setShoe(shoe.payload);
       });
     }

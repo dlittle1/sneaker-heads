@@ -54,7 +54,6 @@ exports.getOneShoe = async (req, res, next) => {
 };
 
 exports.createShoe = async (req, res, next) => {
-  console.log(req.user);
   try {
     const shoe = await Shoe.create({
       ...req.body,
