@@ -36,25 +36,17 @@ const Navbar = () => {
   const dropdownTransition = dropdownIsOpen
     ? {
         opacity: 1,
-        transition: 'all 0.25s ease-in-out',
-        webkitTransition: 'all 0.25s ease-in-out',
       }
     : {
         opacity: 0,
-        transition: 'all 0.25s ease-in-out',
-        webkitTransition: 'all 0.25s ease-in-out',
       };
 
   const drawerTransition = drawerIsOpen
     ? {
         transform: 'translateX(0)',
-        transition: 'all 0.5s ease-in-out',
-        webkitTransition: 'all 0.5s ease-in-out',
       }
     : {
         transform: 'translateX(-100%)',
-        transition: 'all 0.5s ease-in-out',
-        webkitTransition: 'all 0.5s ease-in-out',
       };
 
   return (
@@ -66,7 +58,7 @@ const Navbar = () => {
               <p className='nav--logo-name'>Sneaker-Heads</p>
             </div>
           </Link>
-          <div className='nav-menu' onClick={handleDrawer}>
+          <div className='nav-menu nav-item' onClick={handleDrawer}>
             <FontAwesomeIcon icon={faBars} className='nav-item-icon' />
           </div>
           <div className='nav-items'>
