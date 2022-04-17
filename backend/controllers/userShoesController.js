@@ -27,8 +27,14 @@ exports.getUsersShoes = async (req, res, next) => {
             _id: '$user._id',
             username: '$user.username',
             avatar: '$user.avatar',
+            memberSince: '$user.memberSince',
           },
           shoes: 1,
+        },
+      },
+      {
+        $sort: {
+          'user.username': 1,
         },
       },
     ]);

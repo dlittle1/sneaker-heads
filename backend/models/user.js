@@ -17,7 +17,7 @@ const userSchema = new Schema({
     lowercase: true,
     unique: true,
   },
-  memberSice: {
+  memberSince: {
     type: Date,
     default: Date.now,
   },
