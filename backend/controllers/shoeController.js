@@ -58,6 +58,9 @@ exports.createShoe = async (req, res, next) => {
     const shoe = await Shoe.create({
       ...req.body,
       user: req.user._id,
+    }).then((shoe) => {
+      shoe.populate('user', ['username', 'avatar']);
+      return shoe;
     });
     return res.status(201).json(shoe);
   } catch (err) {
