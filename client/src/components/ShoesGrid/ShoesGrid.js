@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Masonry from 'react-masonry-css';
 import GridItem from './GridItem';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getShoesAsync, deleteShoeAsync } from '../../redux/features/shoeSlice';
-import { useNavigate } from 'react-router-dom';
+import { getShoesAsync } from '../../redux/features/shoeSlice';
 
 const ShoesGrid = (props) => {
   const shoes = useSelector((state) => state.shoes.shoes);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const { sortby } = props;
@@ -19,7 +16,7 @@ const ShoesGrid = (props) => {
         setLoading(false);
       });
     }
-  }, [dispatch, props]);
+  }, [dispatch, props, shoes]);
 
   if (loading && !shoes) {
     return <div>Loading...</div>;

@@ -2,11 +2,7 @@ import React from 'react';
 import ShoeActionButtons from '../ShoeActionButtons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {
-  deleteShoeAsync,
-  setShoe,
-  likeShoe,
-} from '../../redux/features/shoeSlice';
+import { setShoe } from '../../redux/features/shoeSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/pro-regular-svg-icons';
 

@@ -1,13 +1,10 @@
 import React from 'react';
 import '../styles/landingPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faPersonToPortal } from '@fortawesome/pro-regular-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { faHeart } from '@fortawesome/pro-regular-svg-icons';
 import LoginSignupForm from '../components/LoginSignupForm';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-
   return (
     <div className='landing-page-body'>
       <div className='landing-page-image'></div>

@@ -1,11 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/pro-regular-svg-icons';
-import { faTrashCan } from '@fortawesome/pro-regular-svg-icons';
-import { faPenToSquare } from '@fortawesome/pro-regular-svg-icons';
 import '../styles/shoe.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneShoeAsync } from '../redux/features/shoeSlice';
@@ -20,7 +14,6 @@ const Shoe = () => {
   const shoe = useSelector((state) => state.shoes.shoe);
   const [isCommenting, setIsCommenting] = useState(false);
   const comments = useSelector((state) => state.shoes.shoe.comments);
-  const currentUser = useSelector((state) => state.currentUser.user._id);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +28,6 @@ const Shoe = () => {
       setLoading(false);
     }
   }, [shoe]);
-  const navigate = useNavigate();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -56,7 +48,7 @@ const Shoe = () => {
             }}
           ></div>
           <div className='shoe-image'>
-            <img src={shoe.imgUrl} />
+            <img src={shoe.imgUrl} alt={`${shoe.name} ${shoe.version}`} />
           </div>
         </div>
         <div className='shoe-info-container'>

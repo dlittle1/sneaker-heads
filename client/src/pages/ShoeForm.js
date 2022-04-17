@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/shoeForm.css';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
@@ -29,7 +28,7 @@ const ShoeForm = () => {
         setShoe(shoe.payload);
       });
     }
-  }, []);
+  }, [dispatch, params.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +48,6 @@ const ShoeForm = () => {
   };
 
   const editShoe = () => {
-    const updateShoe = { ...shoe, _id: params.id };
     dispatch(updateShoeAsync(shoe))
       .then(() => navigate('/'))
       .catch((err) => console.error(err));

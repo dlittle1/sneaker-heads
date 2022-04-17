@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import sneakerHeads from '../assets/logo_1_xs.png';
 import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons';
@@ -60,11 +59,11 @@ const Navbar = () => {
               </li>
               <li className='nav-drawer-item'>
                 <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
-                <a href='#'>Users</a>
+                Users
               </li>
               <li className='nav-drawer-item'>
                 <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-                <a href='#'>Profile</a>
+                Profile
               </li>
             </ul>
           </div>
