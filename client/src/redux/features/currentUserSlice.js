@@ -20,6 +20,21 @@ export const setUserAsync = createAsyncThunk(
   }
 );
 
+export const createUserAsync = createAsyncThunk(
+  'user/createUserAsync',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('/auth/signup', payload);
+      const { token, user } = response.data;
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -32,15 +47,25 @@ export const userSlice = createSlice({
       state.isLoggedIn = !!action.payload;
       localStorage.setItem('user', JSON.stringify(action.payload));
     },
+    logout: (state) => {
+      state.user = null;
+      state.isLoggedIn = false;
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+    },
   },
   extraReducers: {
     [setUserAsync.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = !!action.payload;
     },
+    [createUserAsync.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.isLoggedIn = !!action.payload;
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, logout } = userSlice.actions;
 
 export default userSlice.reducer;
