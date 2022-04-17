@@ -131,6 +131,10 @@
 }
 
 @media screen and (max-width: 700px) {
+  .my-masonry-grid_column {
+    padding-left: 0;
+  }
+
   .grid-text-container {
     visibility: visible;
   }
@@ -141,22 +145,31 @@
 
   .grid-item-text-title {
     font-size: 40px;
+    padding: 0px 10px;
   }
-  .grid-item-buttons {
-    justify-content: space-around;
+
+  .grid-item .shoe-action-buttons {
+    justify-content: center;
+    gap: 30px;
     width: 100%;
   }
-  .grid-item-button {
+  .grid-item .shoe-action-button {
     visibility: visible;
 
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     padding: 10px;
     opacity: 0.8;
   }
 
-  .grid-item-button-icon {
-    width: 30px;
-    height: 30px;
+  .grid-item .shoe-action-button-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .grid-item-num-likes {
+    color: rgb(236, 122, 122);
+    background-color: white;
+    z-index: 100;
   }
 }
