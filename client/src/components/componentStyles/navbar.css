@@ -22,7 +22,7 @@
 .nav--logo-name {
   font-family: 'Righteous', cursive;
   font-size: 25px;
-  color: #2c2c2c;
+  color: rgb(108, 139, 188);
   margin: 0;
 }
 
@@ -37,46 +37,56 @@
 .nav-items {
   display: flex;
   justify-content: space-between;
-  min-width: 300px;
+  width: 200px;
 }
 
 .nav-item {
   list-style: none;
-  color: #2c2c2c;
+  color: rgb(108, 139, 188);
 }
 
-.nav-item-icon {
-  margin-right: 5px;
+.nav-item-dropdown {
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px 1px rgba(108, 139, 188, 0.5);
+}
+
+.nav-item-dropdown-logout:hover {
+  cursor: pointer;
 }
 
 .nav-item a {
   text-decoration: none;
-  color: #2c2c2c;
+  color: rgb(108, 139, 188);
   font-weight: 700;
 }
 
-.nav-item a:hover {
-  border-bottom: 0.15rem;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-color: black;
-  border-style: solid;
+.nav-items svg {
+  max-width: 40px;
+  margin: -5px;
+  margin-top: -10px;
 }
 
 .nav-drawer {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   background-color: white;
-  padding: 0 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   height: 95vh;
   visibility: hidden;
 }
 .nav-drawer-items {
   margin-right: 40px;
 }
+
+.nav-drawer-items svg {
+  margin-right: 10px;
+}
 .nav-drawer-item {
-  color: #2c2c2c;
+  color: rgb(108, 139, 188);
   padding-top: 30px;
   list-style: none;
 }
@@ -87,7 +97,7 @@
 
 .nav-drawer-item a {
   text-decoration: none;
-  color: #2c2c2c;
+  color: rgb(108, 139, 188);
 }
 @media screen and (max-width: 700px) {
   .nav-items {
@@ -102,5 +112,8 @@
   }
   .nav-drawer {
     visibility: visible;
+  }
+  .nav-item-dropdown {
+    display: none;
   }
 }

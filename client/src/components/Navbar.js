@@ -1,17 +1,42 @@
 import React, { useState } from 'react';
-import '../styles/navbar.css';
+import './componentStyles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons';
-import { faUsersLine } from '@fortawesome/pro-regular-svg-icons';
+import { faUsers } from '@fortawesome/pro-regular-svg-icons';
 import { faUser } from '@fortawesome/pro-regular-svg-icons';
 import { faBars } from '@fortawesome/pro-regular-svg-icons';
+import { faHouse } from '@fortawesome/pro-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/pro-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../redux/features/currentUserSlice';
+import { BigHead } from '@bigheads/core';
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+
+  const currentUser = useSelector((state) => state.currentUser.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const handleDropdown = () => {
+    setDropdownIsOpen((prevState) => !prevState);
+  };
 
   const handleDrawer = () => {
     setDrawerIsOpen((prevState) => !prevState);
   };
+
+  const dropdownTransition = dropdownIsOpen
+    ? { opacity: 1, transition: 'all 0.25s ease-in-out' }
+    : { opacity: 0, transition: 'all 0.25s ease-in-out' };
+
+  const drawerTransition = drawerIsOpen
+    ? { transform: 'translateX(0)', transition: 'all 0.5s ease-in-out' }
+    : { transform: 'translateX(-100%)', transition: 'all 0.5s ease-in-out' };
 
   return (
     <>
@@ -29,47 +54,53 @@ const Navbar = () => {
             <li className='nav-item'>
               <Link to='/'>
                 <FontAwesomeIcon
-                  icon={faHouseBlank}
+                  icon={faHouse}
                   className='nav-item-icon'
+                  size='xl'
                 />
-                Home
               </Link>
             </li>
             <li className='nav-item'>
-              <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
-              Users
+              <Link to='/'>
+                <FontAwesomeIcon
+                  icon={faUsers}
+                  className='nav-item-icon'
+                  size='xl'
+                />
+              </Link>
             </li>
-            <li className='nav-item'>
-              <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-              Profile
+            <BigHead {...currentUser.avatar} />
+            <li className='nav-item' onClick={handleDropdown}>
+              <FontAwesomeIcon icon={faAngleDown} className='nav-item-icon' />
+              <div className='nav-item-dropdown' style={dropdownTransition}>
+                <p onClick={handleLogout} className='nav-item-dropdown-logout'>
+                  Sign-Out
+                </p>
+              </div>
             </li>
           </div>
         </ul>
-        {drawerIsOpen && (
-          <div className='nav-drawer'>
-            <ul className='nav-drawer-items'>
-              <li className='nav-drawer-item'>
-                <Link to='/'>
-                  <FontAwesomeIcon
-                    icon={faHouseBlank}
-                    className='nav-item-icon'
-                  />
-                  Home
-                </Link>
-              </li>
-              <li className='nav-drawer-item'>
-                <FontAwesomeIcon icon={faUsersLine} className='nav-item-icon' />
-                Users
-              </li>
-              <li className='nav-drawer-item'>
-                <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-                Profile
-              </li>
-            </ul>
-          </div>
-        )}
       </nav>
       <div style={{ paddingBottom: '50px' }}></div>
+
+      <div className='nav-drawer' style={drawerTransition}>
+        <ul className='nav-drawer-items'>
+          <li className='nav-drawer-item'>
+            <Link to='/'>
+              <FontAwesomeIcon icon={faHouseBlank} className='nav-item-icon' />
+              Home
+            </Link>
+          </li>
+          <li className='nav-drawer-item'>
+            <FontAwesomeIcon icon={faUsers} className='nav-item-icon' />
+            Users
+          </li>
+          <li className='nav-drawer-item'>
+            <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
+            Profile
+          </li>
+        </ul>
+      </div>
       <Outlet />
     </>
   );
