@@ -46,8 +46,16 @@ const Navbar = () => {
       };
 
   const drawerTransition = drawerIsOpen
-    ? { transform: 'translateX(0)', transition: 'all 0.5s ease-in-out' }
-    : { transform: 'translateX(-100%)', transition: 'all 0.5s ease-in-out' };
+    ? {
+        transform: 'translateX(0)',
+        transition: 'all 0.5s ease-in-out',
+        webkitTransition: 'all 0.5s ease-in-out',
+      }
+    : {
+        transform: 'translateX(-100%)',
+        transition: 'all 0.5s ease-in-out',
+        webkitTransition: 'all 0.5s ease-in-out',
+      };
 
   return (
     <>
