@@ -1,0 +1,22 @@
+.shoe-action-button.shoe-action-button-like {
+  border: 2px solid rgb(236, 122, 122);
+}
+
+.shoe-action-button-like {
+  color: rgb(236, 122, 122);
+  background: white;
+}
+
+.shoe-action-button-delete {
+  background: rgb(236, 122, 122);
+  border: 2px solid rgb(236, 122, 122);
+}
+
+.shoe-action-button-edit {
+  background: rgb(92, 159, 235);
+  border: 2px solid rgb(92, 159, 235);
+}
+
+.shoe-action-button:hover {
+  cursor: pointer;
+}

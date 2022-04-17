@@ -1,5 +1,5 @@
 import React from 'react';
-import GridItemButtons from './GridItemButtons';
+import ShoeActionButtons from '../ShoeActionButtons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
@@ -19,19 +19,6 @@ const GridItem = ({ shoe }) => {
     dispatch(setShoe({ ...shoe }));
   }
 
-  const handleDelete = (id) => {
-    dispatch(deleteShoeAsync(id));
-  };
-
-  function handleEdit(id) {
-    navigate(`/shoes/edit/${id}`);
-    dispatch(setShoe({ ...shoe }));
-  }
-
-  function handleLike(id) {
-    dispatch(likeShoe(id));
-  }
-
   return (
     <div className='grid-item'>
       <div className='grid-item-num-likes'>
@@ -43,12 +30,7 @@ const GridItem = ({ shoe }) => {
         className='grid-img'
         alt={`${shoe.name + ' ' + shoe.version}`}
       />
-      <GridItemButtons
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-        handleLike={handleLike}
-        shoe={shoe}
-      />
+      <ShoeActionButtons shoe={shoe} />
       <div
         className='grid-text-container'
         onClick={() => handleShoeClick(shoe._id)}
