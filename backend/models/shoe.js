@@ -18,7 +18,10 @@ const shoeSchema = new Schema({
   year: Number,
   condition: String,
   likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  numLikes: Number,
+  numLikes: {
+    type: Number,
+    default: 0,
+  },
   imgUrl: {
     type: String,
     required: true,
