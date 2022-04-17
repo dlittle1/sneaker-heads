@@ -6,7 +6,10 @@ import { faUsers } from '@fortawesome/pro-regular-svg-icons';
 import { faUser } from '@fortawesome/pro-regular-svg-icons';
 import { faBars } from '@fortawesome/pro-regular-svg-icons';
 import { faHouse } from '@fortawesome/pro-solid-svg-icons';
-import { faAngleDown } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faAngleDown,
+  faRightFromBracket,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/features/currentUserSlice';
@@ -98,6 +101,13 @@ const Navbar = () => {
           <li className='nav-drawer-item'>
             <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
             Profile
+          </li>
+          <li className='nav-drawer-item' onClick={handleLogout}>
+            <FontAwesomeIcon
+              icon={faRightFromBracket}
+              className='nav-item-icon'
+            />
+            Sign-Out
           </li>
         </ul>
       </div>
