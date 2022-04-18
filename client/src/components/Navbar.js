@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import './componentStyles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouseBlank } from '@fortawesome/pro-regular-svg-icons';
-import { faUsers } from '@fortawesome/pro-regular-svg-icons';
-import { faUser } from '@fortawesome/pro-regular-svg-icons';
-import { faBars } from '@fortawesome/pro-regular-svg-icons';
-import { faHouse } from '@fortawesome/pro-solid-svg-icons';
-import {
-  faAngleDown,
-  faRightFromBracket,
-} from '@fortawesome/pro-solid-svg-icons';
+import { faHouseBlank } from '@fortawesome/pro-duotone-svg-icons';
+import { faUsers } from '@fortawesome/pro-duotone-svg-icons';
+import { faUser } from '@fortawesome/pro-duotone-svg-icons';
+import { faBars } from '@fortawesome/pro-duotone-svg-icons';
+import { faHouse } from '@fortawesome/pro-duotone-svg-icons';
+import { faRightFromBracket } from '@fortawesome/pro-duotone-svg-icons';
+import { faAngleDown } from '@fortawesome/pro-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/features/currentUserSlice';
@@ -72,7 +70,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link to='/'>
+              <Link to='/users/shoes'>
                 <FontAwesomeIcon
                   icon={faUsers}
                   className='nav-item-icon'
@@ -87,6 +85,10 @@ const Navbar = () => {
                 <p onClick={handleLogout} className='nav-item-dropdown-logout'>
                   Sign-Out
                 </p>
+                <FontAwesomeIcon
+                  icon={faRightFromBracket}
+                  className='nav-item-icon'
+                />
               </div>
             </li>
           </div>
