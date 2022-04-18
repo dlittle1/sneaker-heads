@@ -42,7 +42,7 @@ const Users = () => {
       setUserData(res.data);
       setLoading(false);
     });
-  }, []);
+  }, [userTokenAxios]);
 
   console.log(userData);
   return (
