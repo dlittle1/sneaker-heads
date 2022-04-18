@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Shoe = require('../models/shoe');
 
 exports.getUsersShoes = async (req, res, next) => {
@@ -44,13 +45,14 @@ exports.getUsersShoes = async (req, res, next) => {
   }
 };
 
-exports.countUsersShoes = async (req, res, next) => {
+exports.getUsersShoesById = async (req, res, next) => {
   try {
+    console.log(req.params.userId);
     const shoes = await Shoe.aggregate([
+      { $group: { _id: '$user', shoes: { $push: '$$ROOT' } } },
       {
-        $group: {
-          _id: '$user',
-          count: { $sum: 1 },
+        $match: {
+          _id: mongoose.Types.ObjectId(req.params.userId),
         },
       },
       {
@@ -71,12 +73,20 @@ exports.countUsersShoes = async (req, res, next) => {
             _id: '$user._id',
             username: '$user.username',
             avatar: '$user.avatar',
+            memberSince: '$user.memberSince',
           },
-          count: 1,
+          shoes: 1,
         },
       },
     ]);
-    return res.status(200).send(shoes);
+
+    const totalNumLikes = shoes[0].shoes.reduce((numLikes, shoe) => {
+      return numLikes + shoe.numLikes;
+    }, 0);
+
+    shoes[0].totalNumLikes = totalNumLikes;
+
+    return res.status(200).send(shoes[0]);
   } catch (err) {
     return next(err);
   }
