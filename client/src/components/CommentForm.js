@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCommentToShoeAsync } from '../redux/features/shoeSlice';
 
-const CommentForm = ({ isCommenting, shoeId, commentRef }) => {
+const CommentForm = ({
+  isCommenting,
+  shoeId,
+  commentRef,
+  handleCommentClick,
+}) => {
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
 
@@ -15,6 +20,7 @@ const CommentForm = ({ isCommenting, shoeId, commentRef }) => {
   const handleCommentSubmit = (e, comment) => {
     e.preventDefault();
     dispatch(addCommentToShoeAsync({ shoeId, body: comment }));
+    handleCommentClick();
   };
 
   return (

@@ -5,7 +5,6 @@ const ShoeComments = ({
   shoe,
   handleCommentClick,
   isCommenting,
-  handleCommentSubmit,
   comments,
   commentRef,
 }) => {
@@ -20,6 +19,7 @@ const ShoeComments = ({
         commentRef={commentRef}
         isCommenting={isCommenting}
         shoeId={shoe._id}
+        handleCommentClick={handleCommentClick}
       />
       {comments && (
         <div>
