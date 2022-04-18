@@ -42,11 +42,7 @@ const Users = () => {
       setUserData(res.data);
       setLoading(false);
     });
-<<<<<<< HEAD
   }, [userTokenAxios]);
-=======
-  }, []);
->>>>>>> 889b044 (create users page for displaying users shoes)
 
   console.log(userData);
   return (
