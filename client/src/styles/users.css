@@ -23,6 +23,10 @@
   margin-left: 20px;
 }
 
+.user-info:hover {
+  cursor: pointer;
+}
+
 .user-avatar {
   width: 150px;
   height: 150px;
@@ -47,7 +51,8 @@
   border-radius: 0.5rem;
 }
 
-.user-shoe-data:hover {
+.user-shoe-data:hover,
+.user-info:hover {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 

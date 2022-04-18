@@ -78,7 +78,9 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            <BigHead {...currentUser.avatar} />
+            <Link to={`/user/${currentUser._id}`}>
+              <BigHead {...currentUser.avatar} />
+            </Link>
             <li className='nav-item' onClick={handleDropdown}>
               <FontAwesomeIcon icon={faAngleDown} className='nav-item-icon' />
               <div className='nav-item-dropdown' style={dropdownTransition}>

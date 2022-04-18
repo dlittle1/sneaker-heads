@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { BigHead } from '@bigheads/core';
 import TimeAgo from 'javascript-time-ago';
 import '../styles/users.css';
@@ -7,6 +8,7 @@ import '../styles/users.css';
 const Users = () => {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const timeAgo = new TimeAgo('en-US');
 
@@ -42,7 +44,11 @@ const Users = () => {
       setUserData(res.data);
       setLoading(false);
     });
-  }, [userTokenAxios]);
+  }, []);
+
+  const handleUserClick = (id) => {
+    navigate(`/user/${id}`);
+  };
 
   console.log(userData);
   return (
@@ -50,7 +56,10 @@ const Users = () => {
       {userData.map((data) => {
         return (
           <div key={data.user._id} className='users-container'>
-            <div className='user-info'>
+            <div
+              className='user-info'
+              onClick={() => handleUserClick(data.user._id)}
+            >
               <BigHead {...data.user.avatar} className='user-avatar' />
               <div>
                 <h2>{data.user.username}</h2>

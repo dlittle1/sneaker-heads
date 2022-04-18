@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage';
 import { useSelector } from 'react-redux';
 import ShoesGrid from './components/ShoesGrid/ShoesGrid';
 import Users from './pages/Users';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const user = useSelector((state) => state.currentUser.isLoggedIn);
@@ -37,6 +38,7 @@ function App() {
           <Route path='/shoes/create' element={<ShoeForm />} />
           <Route path='/shoes/edit/:id' element={<ShoeForm />} />
           <Route path='/shoes/:id' element={<Shoe />} />
+          <Route path='/user/:id' element={<ProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
