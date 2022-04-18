@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Masonry from 'react-masonry-css';
 import GridItem from './GridItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { getShoesAsync } from '../../redux/features/shoeSlice';
+import { NavLink } from 'react-router-dom';
 
 const ShoesGrid = (props) => {
   const shoes = useSelector((state) => state.shoes.shoes);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-
+  const { sortby } = props;
   useEffect(() => {
-    const { sortby } = props;
-    if (Object.keys(shoes).length === 0) {
-      dispatch(getShoesAsync(sortby)).then((response) => {
-        setLoading(false);
-      });
-    }
-  }, [dispatch, props, shoes]);
+    dispatch(getShoesAsync(sortby)).then((response) => {
+      setLoading(false);
+    });
+  }, [dispatch, sortby]);
 
   if (loading && !shoes) {
     return <div>Loading...</div>;
@@ -33,18 +31,25 @@ const ShoesGrid = (props) => {
 
   return (
     <div className='grid'>
+      <div className='grid-options'>
+        <NavLink to='/' className='grid-options-item'>
+          {' '}
+          Popular{' '}
+        </NavLink>
+        <NavLink to='/shoes/new' className='grid-options-item'>
+          {' '}
+          Newest{' '}
+        </NavLink>
+      </div>
+
       <Masonry
         breakpointCols={breakpoints}
         className='my-masonry-grid'
         columnClassName='my-masonry-grid_column'
       >
-        {shoes.length > 0 ? (
-          shoes.map((shoe) => (
-            <GridItem {...props} shoe={shoe} key={shoe._id} />
-          ))
-        ) : (
-          <h1>There are no shoes</h1>
-        )}
+        {shoes.map((shoe) => (
+          <GridItem {...props} shoe={shoe} key={shoe._id} />
+        ))}
       </Masonry>
     </div>
   );
