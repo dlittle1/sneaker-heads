@@ -1,5 +1,33 @@
 .grid {
   padding-top: 25px;
+  text-align: center;
+}
+
+.grid-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.grid-options-item {
+  padding: 10px 25px;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  margin-bottom: 30px;
+  border: 0;
+  text-decoration: none;
+  color: rgb(108, 139, 188);
+  background-color: white;
+  border: 2px solid rgb(108, 139, 188);
+}
+
+.grid-options .active {
+  background-color: rgb(108, 139, 188);
+  color: white;
 }
 
 .my-masonry-grid {

@@ -1,0 +1,65 @@
+.users {
+  background-color: rgba(220, 208, 255, 0.5);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.users-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 20px;
+  width: 350px;
+  margin-left: 20px;
+}
+
+.user-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-shoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  gap: 20px;
+}
+
+.user-shoe-data {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.user-shoe-data:hover {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.user-shoe-image {
+  width: 150px;
+  height: 150px;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background-position: center;
+  background-size: cover;
+}
+
+.user-shoe-info {
+  padding: 20px;
+}
