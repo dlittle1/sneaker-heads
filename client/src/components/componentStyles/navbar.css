@@ -55,11 +55,9 @@
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   display: flex;
-  align-items: center;
   gap: 15px;
-}
-
-.nav-item-dropdown-logout:hover {
+  width: 150px;
+  align-items: center;
   cursor: pointer;
 }
 

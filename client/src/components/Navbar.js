@@ -37,6 +37,7 @@ const Navbar = () => {
       }
     : {
         opacity: 0,
+        display: 'none',
       };
 
   const drawerTransition = drawerIsOpen
