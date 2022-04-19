@@ -47,7 +47,11 @@ const Users = () => {
   }, []);
 
   const handleUserClick = (id) => {
-    navigate(`/user/${id}`);
+    navigate(`/users/${id}`);
+  };
+
+  const handleShoeClick = (id) => {
+    navigate(`/shoes/${id}`);
   };
 
   console.log(userData);
@@ -78,7 +82,11 @@ const Users = () => {
             <div className='user-shoes-container'>
               {data.shoes.map((shoe) => {
                 return (
-                  <div key={shoe._id} className='user-shoe-data'>
+                  <div
+                    key={shoe._id}
+                    className='user-shoe-data'
+                    onClick={() => handleShoeClick(shoe._id)}
+                  >
                     <div
                       style={{ backgroundImage: `url(${shoe.imgUrl})` }}
                       alt={shoe.name + ' ' + shoe.version}
