@@ -35,26 +35,7 @@ const GridItemButtons = ({ shoe }) => {
 
   return (
     <div className='shoe-action-buttons'>
-      <div
-        className='shoe-action-button shoe-action-button-like'
-        title='Add to Wishlist'
-        onClick={() => handleLike(shoe._id)}
-      >
-        {shoe.likes.includes(currentUser) ? (
-          <FontAwesomeIcon
-            icon={faHeartSolid}
-            size='1x'
-            className='shoe-action-button-icon'
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={faHeart}
-            size='1x'
-            className='shoe-action-button-icon'
-          />
-        )}
-      </div>
-      {shoe.user._id === currentUser && (
+      {currentUser === shoe.user._id ? (
         <>
           <div
             className='shoe-action-button shoe-action-button-edit'
@@ -85,6 +66,26 @@ const GridItemButtons = ({ shoe }) => {
             />
           </div>
         </>
+      ) : (
+        <div
+          className='shoe-action-button shoe-action-button-like'
+          title='Add to Wishlist'
+          onClick={() => handleLike(shoe._id)}
+        >
+          {shoe.likes.includes(currentUser) ? (
+            <FontAwesomeIcon
+              icon={faHeartSolid}
+              size='1x'
+              className='shoe-action-button-icon'
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faHeart}
+              size='1x'
+              className='shoe-action-button-icon'
+            />
+          )}
+        </div>
       )}
     </div>
   );
