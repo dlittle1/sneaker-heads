@@ -22,7 +22,7 @@
 .nav--logo-name {
   font-family: 'Righteous', cursive;
   font-size: 25px;
-  color: rgb(108, 139, 188);
+  color: rgb(93, 159, 235);
   margin: 0;
 }
 
@@ -42,7 +42,7 @@
 
 .nav-item {
   list-style: none;
-  color: rgb(108, 139, 188);
+  color: rgb(93, 159, 235);
 }
 
 .nav-item-dropdown {
@@ -65,7 +65,7 @@
 
 .nav-item a {
   text-decoration: none;
-  color: rgb(108, 139, 188);
+  color: rgb(93, 159, 235);
   font-weight: 700;
 }
 

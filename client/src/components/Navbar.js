@@ -107,12 +107,16 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='nav-drawer-item'>
-            <FontAwesomeIcon icon={faUsers} className='nav-item-icon' />
-            Users
+            <Link to='/users/shoes'>
+              <FontAwesomeIcon icon={faUsers} className='nav-item-icon' />
+              Users
+            </Link>
           </li>
           <li className='nav-drawer-item'>
-            <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-            Profile
+            <Link to={`/user/${currentUser._id}`}>
+              <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
+              Profile
+            </Link>
           </li>
           <li className='nav-drawer-item' onClick={handleLogout}>
             <FontAwesomeIcon
