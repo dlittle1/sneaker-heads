@@ -11,10 +11,7 @@
 .comments-open-button:hover {
   color: rgb(90, 171, 218);
   border: 3px solid rgb(90, 171, 218);
-  border-radius: 0.5rem;
   background-color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
   padding: 7px;
   cursor: pointer;
 }
@@ -67,12 +64,17 @@
 }
 
 @media screen and (max-width: 700px) {
+  .comments-open-button {
+    margin-top: -10px;
+  }
+  .comment-form {
+    margin-top: -10px;
+  }
   .comment-input {
-    height: 25px;
+    height: 45px;
   }
   .comment-submit-button {
-    padding: 5px;
-    width: 25%;
-    margin: 0;
+    padding: 10px 20px;
+    margin: 10px 0px;
   }
 }
