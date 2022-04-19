@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getOneShoeAsync, setShoe } from '../redux/features/shoeSlice';
 import { BigHead } from '@bigheads/core';
 import TimeAgo from 'javascript-time-ago';
 import '../styles/users.css';
@@ -9,6 +11,7 @@ const Users = () => {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const timeAgo = new TimeAgo('en-US');
 
@@ -50,8 +53,10 @@ const Users = () => {
     navigate(`/users/${id}`);
   };
 
-  const handleShoeClick = (id) => {
-    navigate(`/shoes/${id}`);
+  const handleShoeClick = (shoe) => {
+    navigate(`/shoes/${shoe._id}`);
+    dispatch(setShoe({ ...shoe }));
+    dispatch(getOneShoeAsync(shoe._id));
   };
 
   console.log(userData);
@@ -85,7 +90,7 @@ const Users = () => {
                   <div
                     key={shoe._id}
                     className='user-shoe-data'
-                    onClick={() => handleShoeClick(shoe._id)}
+                    onClick={() => handleShoeClick(shoe)}
                   >
                     <div
                       style={{ backgroundImage: `url(${shoe.imgUrl})` }}

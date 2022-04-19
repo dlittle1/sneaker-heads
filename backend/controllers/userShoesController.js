@@ -5,6 +5,14 @@ exports.getUsersShoes = async (req, res, next) => {
   try {
     const shoes = await Shoe.aggregate([
       {
+        $lookup: {
+          from: 'comments',
+          localField: 'comments',
+          foreignField: '_id',
+          as: 'comments',
+        },
+      },
+      {
         $group: {
           _id: '$user',
           shoes: { $push: '$$ROOT' },
