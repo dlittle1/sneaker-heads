@@ -38,7 +38,7 @@ function App() {
           <Route path='/shoes/create' element={<ShoeForm />} />
           <Route path='/shoes/edit/:id' element={<ShoeForm />} />
           <Route path='/shoes/:id' element={<Shoe />} />
-          <Route path='/user/:id' element={<ProfilePage />} />
+          <Route path='/users/:id' element={<ProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
