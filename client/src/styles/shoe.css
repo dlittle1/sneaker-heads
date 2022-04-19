@@ -181,8 +181,13 @@
 
   .shoe-info-buttons .shoe-action-button {
     border-radius: 100%;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     position: relative;
+  }
+
+  .shoe-info-buttons .shoe-action-button-icon {
+    width: 25px;
+    height: 25px;
   }
 }

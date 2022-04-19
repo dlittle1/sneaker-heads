@@ -73,6 +73,7 @@ const Shoe = () => {
               <div className='shoe-info-year-condition'>
                 <h3>Year: {shoe.year}</h3>
                 <h3>Condition: {shoe.condition}</h3>
+                <h3>Number of Likes: {shoe.numLikes}</h3>
               </div>
             </div>
             <div className='shoe-info-buttons'>
