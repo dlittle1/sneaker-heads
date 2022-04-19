@@ -67,7 +67,10 @@ export const addCommentToShoeAsync = createAsyncThunk(
     try {
       const response = await userTokenAxios.post(
         `/${payload.shoeId}/comments`,
-        { comment: payload.body }
+        { comment: payload.body },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        }
       );
       return response.data;
     } catch (error) {
@@ -80,7 +83,9 @@ export const likeShoe = createAsyncThunk(
   'shoes/likeShoe',
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await userTokenAxios.post(`/${payload}/like`);
+      const response = await userTokenAxios.post(`/${payload}/like`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
