@@ -1,0 +1,172 @@
+.grid-item {
+  position: relative;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  margin-right: 0;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.grid-item-num-likes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: white;
+  color: rgb(236, 122, 122);
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+
+.grid-item-text-container {
+  position: absolute;
+  height: 99%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  border-radius: 0.5rem;
+  visibility: hidden;
+}
+
+.grid-item:hover .grid-item-text-container {
+  visibility: visible;
+}
+
+.grid-item-text-container:hover {
+  cursor: pointer;
+}
+
+.grid-item:hover .shoe-action-button {
+  visibility: visible;
+}
+
+.grid-item:hover .grid-item-num-likes {
+  color: rgb(236, 122, 122);
+  background-color: white;
+  z-index: 100;
+}
+
+.grid-item-text {
+  color: white;
+}
+
+.grid-item-text-title {
+  font-weight: 700;
+  margin-bottom: -5px;
+}
+
+.grid-item .shoe-action-buttons {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.grid-item .shoe-action-button {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  z-index: 20;
+}
+
+.grid-item .shoe-action-button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.grid-item .shoe-action-button-like {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+}
+
+.grid-item .shoe-action-button-edit,
+.grid-item .shoe-action-button-delete {
+  position: relative;
+  display: block;
+}
+
+.grid-item-info {
+  padding: 0.5rem;
+}
+
+.grid-item-info > p {
+  margin: 0px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.grid-item-info-user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+.grid-item-info-user p {
+  font-weight: 400;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.grid-item-info-user svg {
+  width: 50px;
+  margin-top: 0px;
+  margin-left: -10px;
+  cursor: pointer;
+}
+
+.grid-item-img {
+  width: 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.grid-item-img:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .grid-item-text {
+    font-size: 30px;
+  }
+
+  .grid-item-text-title {
+    font-size: 40px;
+    padding: 0px 10px;
+  }
+
+  .grid-item .shoe-action-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .grid-item .shoe-action-button-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .grid-item-info > p {
+    font-size: 20px;
+  }
+
+  .grid-item-info-user p {
+    font-weight: 400;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .grid-item-info-user svg {
+    width: 60px;
+    margin-top: 0px;
+    margin-left: -10px;
+    cursor: pointer;
+  }
+}

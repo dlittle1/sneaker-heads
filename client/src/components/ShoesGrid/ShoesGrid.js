@@ -4,6 +4,7 @@ import GridItem from './GridItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { getShoesAsync } from '../../redux/features/shoeSlice';
 import { NavLink } from 'react-router-dom';
+import '../componentStyles/shoesGrid.css';
 
 const ShoesGrid = (props) => {
   const shoes = useSelector((state) => state.shoes.shoes);
@@ -22,11 +23,12 @@ const ShoesGrid = (props) => {
 
   const breakpoints = {
     default: 5,
-    1700: 5,
-    1500: 4,
-    1200: 3,
-    890: 2,
-    592: 1,
+    1700: 6,
+    1500: 5,
+    1200: 4,
+    890: 3,
+    592: 2,
+    420: 1,
   };
 
   return (

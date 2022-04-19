@@ -1,0 +1,57 @@
+.grid {
+  padding-top: 25px;
+  width: 90vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+.grid-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.grid-options-item {
+  padding: 10px 25px;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  margin-bottom: 30px;
+  border: 0;
+  text-decoration: none;
+  color: rgb(93, 159, 235);
+  background-color: white;
+  border: 2px solid rgb(93, 159, 235);
+}
+
+.grid-options .active {
+  background-color: rgb(93, 159, 235);
+  color: white;
+}
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 15px;
+  background-clip: padding-box;
+}
+
+@media screen and (max-width: 420px) {
+  .my-masonry-grid_column {
+    padding-left: 0;
+  }
+
+  .grid-text-container {
+    visibility: visible;
+  }
+}
