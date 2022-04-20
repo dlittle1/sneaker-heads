@@ -19,6 +19,24 @@ const Navbar = () => {
 
   const currentUser = useSelector((state) => state.currentUser.user);
 
+  const navItems = [
+    {
+      name: 'Home',
+      icon: faHouseBlank,
+      path: '/',
+    },
+    {
+      name: 'Users',
+      icon: faUsers,
+      path: '/users',
+    },
+    {
+      name: 'Profile',
+      icon: faUser,
+      path: `/users/${currentUser.id}`,
+    },
+  ];
+
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -27,7 +45,7 @@ const Navbar = () => {
     setDropdownIsOpen((prevState) => !prevState);
   };
 
-  const handleDrawer = () => {
+  const toggleDrawer = () => {
     setDrawerIsOpen((prevState) => !prevState);
   };
 
@@ -57,7 +75,7 @@ const Navbar = () => {
               <p className='nav--logo-name'>Sneaker-Heads</p>
             </div>
           </Link>
-          <div className='nav-menu nav-item' onClick={handleDrawer}>
+          <div className='nav-menu nav-item' onClick={toggleDrawer}>
             <FontAwesomeIcon icon={faBars} className='nav-item-icon' />
           </div>
           <div className='nav-items'>
@@ -101,24 +119,18 @@ const Navbar = () => {
 
       <div className='nav-drawer' style={drawerTransition}>
         <ul className='nav-drawer-items'>
-          <li className='nav-drawer-item'>
-            <Link to='/'>
-              <FontAwesomeIcon icon={faHouseBlank} className='nav-item-icon' />
-              Home
-            </Link>
-          </li>
-          <li className='nav-drawer-item'>
-            <Link to='/users/shoes'>
-              <FontAwesomeIcon icon={faUsers} className='nav-item-icon' />
-              Users
-            </Link>
-          </li>
-          <li className='nav-drawer-item'>
-            <Link to={`/user/${currentUser._id}`}>
-              <FontAwesomeIcon icon={faUser} className='nav-item-icon' />
-              Profile
-            </Link>
-          </li>
+          {navItems.map((item) => (
+            <li
+              className='nav-drawer-item'
+              key={item.name}
+              onClick={toggleDrawer}
+            >
+              <Link to={item.path}>
+                <FontAwesomeIcon icon={item.icon} className='nav-item-icon' />
+                {item.name}
+              </Link>
+            </li>
+          ))}
           <li className='nav-drawer-item' onClick={handleLogout}>
             <FontAwesomeIcon
               icon={faRightFromBracket}

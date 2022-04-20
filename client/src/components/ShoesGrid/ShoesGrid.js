@@ -13,8 +13,6 @@ const ShoesGrid = (props) => {
   const sortBy = useSelector((state) => state.shoes.sort);
   const navigate = useNavigate();
 
-  const [testArr, setTestArr] = useState([]);
-
   useEffect(() => {
     if (shoes.length === 0) {
       dispatch(getShoesAsync(sortBy)).then(() => {
