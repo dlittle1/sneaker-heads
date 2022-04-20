@@ -30,7 +30,7 @@ function App() {
               element={<ShoesGrid sortby='createdAt' />}
             />
             <Route path='/shoes/name' element={<ShoesGrid sortby='name' />} />
-            <Route path='/users/shoes' element={<Users />} />
+            <Route path='/users' element={<Users />} />
           </Route>
           <Route path='/shoes/create' element={<ShoeForm />} />
           <Route path='/shoes/edit/:id' element={<ShoeForm />} />
