@@ -89,7 +89,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link to='/users/shoes'>
+              <Link to='/users'>
                 <FontAwesomeIcon
                   icon={faUsers}
                   className='nav-item-icon'
