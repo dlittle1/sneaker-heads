@@ -24,15 +24,12 @@ function App() {
         />
         <Route element={!user ? <Navigate replace to='/login' /> : <Navbar />}>
           <Route path='/' element={<Home />}>
-            <Route index element={<ShoesGrid sortby='-numLikes' />} />
+            <Route index element={<ShoesGrid sortby='numLikes' />} />
             <Route
               path='/shoes/new'
-              element={<ShoesGrid sortby='-createdAt' />}
+              element={<ShoesGrid sortby='createdAt' />}
             />
-            <Route
-              path='/shoes/alphabetical'
-              element={<ShoesGrid sortby='name' />}
-            />
+            <Route path='/shoes/name' element={<ShoesGrid sortby='name' />} />
             <Route path='/users/shoes' element={<Users />} />
           </Route>
           <Route path='/shoes/create' element={<ShoeForm />} />
