@@ -13,6 +13,8 @@ const ShoesGrid = (props) => {
   const sortBy = useSelector((state) => state.shoes.sort);
   const navigate = useNavigate();
 
+  const [testArr, setTestArr] = useState([]);
+
   useEffect(() => {
     if (shoes.length === 0) {
       dispatch(getShoesAsync(sortBy)).then(() => {
@@ -46,7 +48,7 @@ const ShoesGrid = (props) => {
     1200: 4,
     890: 3,
     592: 2,
-    420: 2,
+    420: 1,
   };
 
   return (
