@@ -8,28 +8,24 @@ import '../componentStyles/shoesGrid.css';
 
 const ShoesGrid = (props) => {
   const shoes = useSelector((state) => state.shoes.shoes);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const sortBy = useSelector((state) => state.shoes.sort);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (shoes.length === 0) {
+      setLoading(true);
       dispatch(getShoesAsync(sortBy)).then(() => {
         setLoading(false);
       });
     }
-    if (props.sortby !== sortBy) {
+    if (props.sortby !== sortBy && shoes.length > 0) {
+      setLoading(true);
       dispatch(setSort(props.sortby));
-    }
+      setLoading(false);
+    } else setLoading(false);
   }, [dispatch, shoes.length, sortBy, props.sortby]);
-
-  useEffect(() => {
-    if (shoes.length !== 0) {
-      dispatch(setSort(props.sortby));
-    }
-    setLoading(false);
-  }, [dispatch, sortBy, shoes.length, props.sortby]);
 
   const changeSortBy = (newSort) => {
     dispatch(setSort(newSort));
