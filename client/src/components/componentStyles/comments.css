@@ -63,6 +63,10 @@
   cursor: pointer;
 }
 
+.comments-container {
+  padding: 40px 0px;
+}
+
 @media screen and (max-width: 700px) {
   .comments-open-button {
     margin-top: -10px;

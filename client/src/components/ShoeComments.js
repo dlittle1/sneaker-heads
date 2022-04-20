@@ -22,7 +22,7 @@ const ShoeComments = ({
         handleCommentClick={handleCommentClick}
       />
       {comments && (
-        <div>
+        <div className='comments-container'>
           {comments.map((comment, index) => (
             <div key={comment + index}>
               <hr />
