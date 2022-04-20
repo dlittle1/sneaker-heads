@@ -57,8 +57,10 @@ const Shoe = () => {
               backgroundImage: `url(${shoe.imgUrl})`,
             }}
           ></div>
-          <div className='shoe-image'>
-            <img src={shoe.imgUrl} alt={`${shoe.name} ${shoe.version}`} />
+          <div className='shoe-image-desktop-container'>
+            <div className='shoe-image'>
+              <img src={shoe.imgUrl} alt={`${shoe.name} ${shoe.version}`} />
+            </div>
           </div>
         </div>
         <div className='shoe-info-container'>

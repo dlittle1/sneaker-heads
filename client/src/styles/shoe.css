@@ -1,30 +1,43 @@
 .shoe-body {
-  height: 90vh;
+  height: 100%;
   background-color: rgb(231, 231, 231);
 }
 
 .shoe-container {
+  position: relative;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: stretch;
   height: inherit;
 }
 
 .shoe-image-container {
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+}
+
+.shoe-image-desktop-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
   height: 100%;
+  background-color: rgb(242, 242, 242);
 }
 
 .shoe-image {
   border-radius: 0.5rem;
-  max-width: 50%;
+  width: 25%;
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
 }
 
 .shoe-image img {
   width: 100%;
+  height: 100%;
   border-radius: 0.5rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .shoe-image-mobile {
@@ -81,20 +94,22 @@
 
 .shoe-info-buttons .shoe-action-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   width: 50%;
 }
 
 .shoe-info-buttons .shoe-action-button {
   border-radius: 100%;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   position: relative;
 }
 
 .shoe-info-buttons .shoe-action-button-icon {
   position: absolute;
+  width: 25px;
+  height: 25px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -104,7 +119,7 @@
   margin-top: 30px;
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .shoe-image {
     max-width: 75%;
   }
@@ -120,13 +135,13 @@
   .shoe-image {
     max-width: 35%;
   }
-}
+} */
 
-@media screen and (min-width: 1250px) {
+/* @media screen and (min-width: 1250px) {
   .shoe-image {
     width: 60%;
   }
-}
+} */
 
 @media screen and (max-width: 600px) {
   .shoe-body {
@@ -137,7 +152,7 @@
   }
   .shoe-image-container {
     width: 100%;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
   }
   .shoe-image-mobile {
@@ -147,7 +162,7 @@
     background-size: cover;
     display: block;
   }
-  .shoe-image {
+  .shoe-image-desktop-container {
     display: none;
   }
   .shoe-info-container {
@@ -181,13 +196,7 @@
 
   .shoe-info-buttons .shoe-action-button {
     border-radius: 100%;
-    width: 45px;
-    height: 45px;
-    position: relative;
-  }
 
-  .shoe-info-buttons .shoe-action-button-icon {
-    width: 25px;
-    height: 25px;
+    position: relative;
   }
 }
