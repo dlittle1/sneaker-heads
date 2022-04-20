@@ -52,17 +52,22 @@ const ProfilePage = () => {
     <div className='user-profile'>
       <div className='user-profile-info-container'>
         <BigHead {...userData.user.avatar} className='user-profile-avatar' />
-        <div>
+        <div className='user-profile-user-data'>
           <h1>{userData.user.username}</h1>
-          <h4>
-            Became a member: <br />
-            {timeAgo.format(new Date(userData.user.memberSince))}
-          </h4>
-          <h4>
-            Owns {userData.shoes.length} shoe
-            {userData.shoes.length > 1 && 's'}
-          </h4>
-          <h4>Has a total of {userData.totalNumLikes} likes</h4>
+          <div className='user-profile-user-data-info'>
+            <h4>
+              Became a member: <br />
+              {timeAgo.format(new Date(userData.user.memberSince))}
+            </h4>
+            <h4>
+              Owns: <br /> {userData.shoes.length} shoe
+              {userData.shoes.length > 1 && 's'}
+            </h4>
+            <h4>
+              Has a total of: <br /> {userData.totalNumLikes} like
+              {userData.totalNumLikes !== 1 && 's'}
+            </h4>
+          </div>
         </div>
       </div>
       <div className='user-shoes-container user-profile-shoes-container'>
