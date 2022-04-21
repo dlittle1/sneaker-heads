@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bigheadsGenerator = require('../utils/bigheads');
 const { getRandomOptions } = bigheadsGenerator;
+const guestAvatar = require('../utils/guestAvatar');
+const { getGuestAvatar } = guestAvatar;
 
 // Signup
 authRouter.post('/signup', async (req, res, next) => {
@@ -80,5 +82,38 @@ authRouter.post('/login', async (req, res, next) => {
     return next(err);
   }
 });
+
+// authRouter.post('/guest', async (req, res, next) => {
+//   const { username, password: plainTextPassword, email } = req.body;
+//   const salt = bcrypt.genSaltSync(10);
+//   const password = await bcrypt.hash(plainTextPassword, salt);
+//   const avatar = getGuestAvatar();
+
+//   try {
+//     const guestUser = await User.create({
+//       username,
+//       email,
+//       password,
+//       avatar,
+//     });
+//     const token = jwt.sign(
+//       {
+//         _id: guestUser._id,
+//         username: guestUser.username,
+//         email: guestUser.email,
+//         type: 'user',
+//       },
+//       process.env.JWT_SECRET,
+//       {
+//         expiresIn: '24h',
+//       }
+//     );
+//     const guestUserObj = guestUser.toObject();
+//     delete guestUserObj.password;
+//     return res.status(201).json({ token, user: guestUserObj });
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
 
 module.exports = authRouter;
