@@ -10,7 +10,6 @@ const ProfilePage = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const currentUser = useSelector((state) => state.currentUser.user);
 
   const timeAgo = new TimeAgo('en-US');
 
@@ -42,8 +41,6 @@ const ProfilePage = () => {
     fetchUserShoes().then(() => setLoading(false));
   }, [id]);
 
-  console.log(userData);
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -60,7 +57,7 @@ const ProfilePage = () => {
               {timeAgo.format(new Date(userData.user.memberSince))}
             </h4>
             <h4>
-              Owns: <br /> {userData.shoes.length} shoe
+              Owns: <br /> {userData.shoes && userData.shoes.length} shoe
               {userData.shoes.length > 1 && 's'}
             </h4>
             <h4>

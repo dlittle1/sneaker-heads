@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const Shoe = require('../models/shoe');
+const User = require('../models/user');
 
 exports.getUsersShoes = async (req, res, next) => {
   try {
@@ -88,9 +89,16 @@ exports.getUsersShoesById = async (req, res, next) => {
       },
     ]);
 
-    const totalNumLikes = shoes[0].shoes.reduce((numLikes, shoe) => {
-      return numLikes + shoe.numLikes;
-    }, 0);
+    console.log(shoes);
+    let totalNumLikes = 0;
+    if (shoes.length === 0) {
+      const user = await User.findById(req.params.userId);
+      return res.status(200).send({ user: user, shoes: [] });
+    } else {
+      totalNumLikes = shoes[0].shoes.reduce((numLikes, shoe) => {
+        return numLikes + shoe.numLikes;
+      }, 0);
+    }
 
     shoes[0].totalNumLikes = totalNumLikes;
 

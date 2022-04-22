@@ -97,7 +97,7 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            <Link to={`/user/${currentUser._id}`}>
+            <Link to={`/users/${currentUser._id}`}>
               <BigHead {...currentUser.avatar} />
             </Link>
             <li className='nav-item' onClick={handleDropdown}>
