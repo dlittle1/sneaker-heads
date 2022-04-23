@@ -67,6 +67,14 @@
   padding: 40px 0px;
 }
 
+.shoe-comment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
 @media screen and (max-width: 700px) {
   .comments-open-button {
     margin-top: -10px;

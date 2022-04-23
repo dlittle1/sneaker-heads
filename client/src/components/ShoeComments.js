@@ -29,7 +29,6 @@ const ShoeComments = ({
               <div className='shoe-comment'>
                 <p>{comment.body}</p>
                 <p>
-                  {' '}
                   -{' '}
                   <span className='shoe-comment-user'>
                     {comment.user.username}
