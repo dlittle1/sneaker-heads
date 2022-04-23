@@ -88,18 +88,18 @@ exports.getUsersShoesById = async (req, res, next) => {
         },
       },
     ]);
-
-    console.log(shoes);
     let totalNumLikes = 0;
     if (shoes.length === 0) {
-      const user = await User.findById(req.params.userId);
-      return res.status(200).send({ user: user, shoes: [] });
+      const user = await User.findById(
+        { _id: req.params.userId },
+        { _id: 1, username: 1, avatar: 1, memberSince: 1 }
+      );
+      return res.status(200).send({ user: user, shoes: [], totalNumLikes });
     } else {
       totalNumLikes = shoes[0].shoes.reduce((numLikes, shoe) => {
         return numLikes + shoe.numLikes;
       }, 0);
     }
-
     shoes[0].totalNumLikes = totalNumLikes;
 
     return res.status(200).send(shoes[0]);
