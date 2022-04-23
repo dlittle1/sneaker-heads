@@ -56,7 +56,6 @@ exports.getUsersShoes = async (req, res, next) => {
 
 exports.getUsersShoesById = async (req, res, next) => {
   try {
-    console.log(req.params.userId);
     const shoes = await Shoe.aggregate([
       { $group: { _id: '$user', shoes: { $push: '$$ROOT' } } },
       {
