@@ -33,7 +33,7 @@ const Navbar = () => {
     {
       name: 'Profile',
       icon: faUser,
-      path: `/users/${currentUser.id}`,
+      path: `/users/${currentUser._id}`,
     },
   ];
 
