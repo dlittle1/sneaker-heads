@@ -16,7 +16,7 @@ const ShoesGrid = (props) => {
   useEffect(() => {
     if (shoes.length === 0) {
       setLoading(true);
-      dispatch(getShoesAsync(sortBy)).then(() => {
+      dispatch(getShoesAsync('-numLikes')).then(() => {
         setLoading(false);
       });
     }
