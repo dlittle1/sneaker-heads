@@ -5,7 +5,7 @@ import ShoeForm from './pages/ShoeForm';
 import Shoe from './pages/Shoe';
 import LandingPage from './pages/LandingPage';
 import { useSelector } from 'react-redux';
-import ShoesGrid from './components/ShoesGrid/ShoesGrid';
+import ShoesGrid from './pages/ShoesGrid';
 import Users from './pages/Users';
 import ProfilePage from './pages/ProfilePage';
 

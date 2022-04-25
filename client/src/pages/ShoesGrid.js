@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Masonry from 'react-masonry-css';
-import GridItem from './GridItem';
+import GridItem from '../components/ShoesGrid/GridItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { getShoesAsync, setSort } from '../../redux/features/shoeSlice';
-import { NavLink, useNavigate } from 'react-router-dom';
-import '../componentStyles/shoesGrid.css';
+import { getShoesAsync, setSort } from '../redux/features/shoeSlice';
+import GridOptions from '../components/ShoesGrid/GridOptions';
+import '../components/componentStyles/shoesGrid.css';
 
 const ShoesGrid = (props) => {
   const shoes = useSelector((state) => state.shoes.shoes);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const sortBy = useSelector((state) => state.shoes.sort);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (shoes.length === 0) {
@@ -47,24 +46,7 @@ const ShoesGrid = (props) => {
 
   return (
     <div className='grid'>
-      <div className='grid-options'>
-        <NavLink
-          to='/'
-          className='grid-options-item'
-          onClick={() => changeSortBy('numLikes')}
-        >
-          {' '}
-          Popular{' '}
-        </NavLink>
-        <NavLink
-          to='/shoes/new'
-          className='grid-options-item'
-          onClick={() => changeSortBy('createdAt')}
-        >
-          {' '}
-          Newest{' '}
-        </NavLink>
-      </div>
+      <GridOptions changeSortBy={changeSortBy} />
       <Masonry
         breakpointCols={breakpoints}
         className='my-masonry-grid'
