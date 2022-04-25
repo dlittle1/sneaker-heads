@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCommentToShoeAsync } from '../redux/features/shoeSlice';
+import { addCommentToShoeAsync } from '../../redux/features/shoeSlice';
 
 const CommentForm = ({
   isCommenting,
