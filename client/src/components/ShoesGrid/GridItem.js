@@ -1,13 +1,10 @@
 import React from 'react';
-import ShoeActionButtons from '../ShoeActionButtons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShoe } from '../../redux/features/shoeSlice';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/pro-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/pro-solid-svg-icons';
+import NumLikesCard from './NumLikesCard';
 import '../componentStyles/gridItem.css';
-import { BigHead } from '@bigheads/core';
+import ShoeCardInfo from './ShoeCardInfo';
 
 const GridItem = ({ shoe }) => {
   const navigate = useNavigate();
@@ -25,32 +22,24 @@ const GridItem = ({ shoe }) => {
 
   return (
     <div className='grid-item'>
-      <div className='grid-item-num-likes'>
-        <FontAwesomeIcon
-          icon={shoe.likes.includes(user._id) ? faHeartSolid : faHeart}
-          size='1x'
-        />
-        <span>{shoe.numLikes}</span>
-      </div>
+      <NumLikesCard
+        includesUser={shoe.likes.includes(user._id)}
+        numLikes={shoe.numLikes}
+      />
       <img
         src={shoe.imgUrl}
         className='grid-item-img'
         alt={`${shoe.name + ' ' + shoe.version}`}
         onClick={() => handleShoeClick(shoe._id)}
       />
-      <div className='grid-item-info'>
-        <p>{shoe.name}</p>
-        <div className='grid-item-info-user'>
-          <BigHead
-            {...shoe.user.avatar}
-            onClick={() => handleUserClick(shoe.user._id)}
-          />
-          <p onClick={() => handleUserClick(shoe.user._id)}>
-            {shoe.user.username}
-          </p>
-        </div>
-        <ShoeActionButtons shoe={shoe} />
-      </div>
+      <ShoeCardInfo
+        shoe={shoe}
+        name={shoe.name}
+        userId={shoe.user._id}
+        avatar={shoe.user.avatar}
+        username={shoe.user.username}
+        handleUserClick={handleUserClick}
+      />
     </div>
   );
 };
