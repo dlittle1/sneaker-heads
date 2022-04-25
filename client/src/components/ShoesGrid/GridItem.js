@@ -16,10 +16,6 @@ const GridItem = ({ shoe }) => {
     dispatch(setShoe({ ...shoe }));
   }
 
-  const handleUserClick = (id) => {
-    navigate(`/users/${id}`);
-  };
-
   return (
     <div className='grid-item'>
       <NumLikesCard
@@ -38,7 +34,6 @@ const GridItem = ({ shoe }) => {
         userId={shoe.user._id}
         avatar={shoe.user.avatar}
         username={shoe.user.username}
-        handleUserClick={handleUserClick}
       />
     </div>
   );
